@@ -1,6 +1,6 @@
 <template>
   <div class="content-container">
-    <ListHeader :title="title" @refresh="refreshHeroes" @add="enableAddMode" :routePath="routePath"></ListHeader>
+    <ListHeader :title="title" @refresh="getHeroes" @add="enableAddMode" :routePath="routePath"></ListHeader>
     <div class="columns is-multiline is-variable">
       <div class="column is-8" v-if="heroes">
         <div v-if="!selected">
@@ -13,7 +13,7 @@
       </div>
     </div>
 
-    <!-- <app-modal class="modal-hero" [message]="message" [isOpen]="showModal" (handleNo)="closeModal()" (handleYes)="deleteHero()"></app-modal> -->
+    <Modal class="modal-hero" :message="message" :isOpen="showModal" @handleNo="closeModal" @handleYes="deleteHero"></Modal>
   </div>
 </template>
 
@@ -21,7 +21,8 @@
 import { mapActions, mapGetters, mapMutations } from 'vuex';
 import ListHeader from '@/components/ListHeader.vue';
 import HeroList from '@/components/HeroList.vue';
-import { ADD_HERO, UPDATE_HERO, DELETE_HERO } from '@/store';
+import Modal from '@/components/Modal.vue';
+import { ADD_HERO, UPDATE_HERO } from '@/store';
 
 const captains = console;
 
@@ -30,26 +31,28 @@ export default {
   data() {
     return {
       heroToDelete: null,
-      title: 'Heroes',
+      message: '',
       routePath: '/heroes',
       // heroes: [{ id: 1, name: 'ward', description: 'hi' }],
       selected: null,
       showModal: false,
+      title: 'Heroes',
     };
   },
   components: {
     ListHeader,
     HeroList,
+    Modal,
   },
   created() {
-    this.getHeroes();
+    this.getHeroesAction();
   },
   computed: {
     ...mapGetters('heroes', { heroes: 'heroes' }),
   },
   methods: {
-    ...mapActions('heroes', ['getHeroes']),
-    ...mapMutations('heroes', [ADD_HERO, UPDATE_HERO, DELETE_HERO]),
+    ...mapActions('heroes', ['getHeroesAction', 'deleteHeroAction']),
+    ...mapMutations('heroes', [ADD_HERO, UPDATE_HERO]),
     askToDelete(hero) {
       this.heroToDelete = hero;
       this.showModal = true;
@@ -58,20 +61,24 @@ export default {
         captains.log(this.message);
       }
     },
-    deleteHero() {
+    clear() {
+      this.selected = null;
+    },
+    closeModal() {
       this.showModal = false;
+    },
+    deleteHero() {
+      this.closeModal();
       if (this.heroToDelete) {
-        // TODO
-        // this.heroService
-        //   .delete(this.heroToDelete.id)
-        //   .subscribe(() => (this.heroToDelete = null));
+        captains.log(`You said you want to delete ${this.heroToDelete.name}`);
+        this.deleteHeroAction(this.heroToDelete);
       }
-      this.close();
+      this.clear();
     },
     enableAddMode() {},
-    refreshHeroes() {
-      this.selected = null;
-      this.getHeroes();
+    getHeroes() {
+      this.getHeroesAction();
+      this.clear();
     },
     save(arg) {
       const hero = arg.hero;

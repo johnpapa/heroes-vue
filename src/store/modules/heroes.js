@@ -30,13 +30,24 @@ export default {
   },
   actions: {
     // actions let us get to ({ state, getters, commit, dispatch }) {
-    getHeroes({ commit }) {
+    getHeroesAction({ commit }) {
       return axios
         .get(`${API}/heroes`)
         .then(response => {
           if (response.status !== 200) throw Error(response.message);
           const heroes = response.data;
           commit(GET_HEROES, heroes);
+          return heroes;
+        })
+        .catch(console.error);
+    },
+    deleteHeroAction({ commit }, hero) {
+      return axios
+        .delete(`${API}/heroes/${hero.id}`)
+        .then(response => {
+          if (response.status !== 200) throw Error(response.message);
+          const heroes = response.data;
+          commit(DELETE_HERO, hero);
           return heroes;
         })
         .catch(console.error);
