@@ -4,8 +4,8 @@
       <div class="card">
         <CardContent :name="hero.name" :description="hero.description" />
         <footer class="card-footer">
-          <ButtonFooter class="delete-item" iconClasses="fas fa-trash" @clicked="deleteHero" label="Delete" :dataIndex="index" :dataId="hero.id" />
-          <ButtonFooter class="edit-item" iconClasses="fas fa-edit" @clicked="selectHero" label="Edit" :dataIndex="index" :dataId="hero.id" />
+          <ButtonFooter class="delete-item" iconClasses="fas fa-trash" @clicked="deleteHero" label="Delete" :dataIndex="index" :dataId="hero.id" :item="hero" />
+          <ButtonFooter class="edit-item" iconClasses="fas fa-edit" @clicked="selectHero" label="Edit" :dataIndex="index" :dataId="hero.id" :item="hero" />
         </footer>
       </div>
     </li>
@@ -15,6 +15,8 @@
 <script>
 import ButtonFooter from '@/components/ButtonFooter.vue';
 import CardContent from '@/components/CardContent.vue';
+
+const captains = console;
 
 export default {
   name: 'HeroList',
@@ -29,8 +31,14 @@ export default {
     ButtonFooter,
   },
   methods: {
-    deleteHero() {},
-    selectHero() {},
+    deleteHero(hero) {
+      this.$emit('deleted', hero);
+      captains.log(`You tried to delete ${hero.name}`);
+    },
+    selectHero(hero) {
+      captains.log(`You tried to select ${hero.name}`);
+      this.$emit('selected', hero);
+    },
   },
 };
 </script>

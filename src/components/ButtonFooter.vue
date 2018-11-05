@@ -26,8 +26,8 @@ export default {
       default: () => null,
     },
     dataId: {
-      type: Number,
-      default: () => null,
+      type: String,
+      default: () => '',
     },
     iconClasses: {
       type: String,
@@ -35,7 +35,9 @@ export default {
     },
   },
   methods: {
-    handleClick() {},
+    handleClick() {
+      this.$emit('clicked', this.item);
+    },
   },
 };
 </script>

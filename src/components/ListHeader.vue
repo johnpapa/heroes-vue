@@ -1,6 +1,6 @@
 <template>
   <div class="content-title-group">
-    <router-link :to="{path: routePath}">
+    <router-link :to="routePath">
       <h2 class="title">{{title}}</h2>
     </router-link>
     <button class="button add-button" @click="handleAdd" aria-label="add">
@@ -28,7 +28,9 @@ export default {
   },
   methods: {
     handleAdd() {},
-    handleRefresh() {},
+    handleRefresh() {
+      this.$emit('refresh');
+    },
   },
 };
 </script>
