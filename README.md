@@ -1,29 +1,47 @@
 # heroes-vue
 
-## Project setup
-```
-npm install
-```
+This project was created to help represent a fundamental app written with React. The heroes and villains theme is used throught the app.
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+by [John Papa](http://twitter.com/john_papa)
 
-### Compiles and minifies for production
-```
-npm run build
-```
+Comparative apps written with Angular and React can be found at at [github.com/johnpapa/heroes-angular](https://github.com/johnpapa/heroes-angular) and [github.com/johnpapa/heroes-react](https://github.com/johnpapa/heroes-react)
 
-### Run your tests
-```
-npm run test
-```
+These apps contain:
 
-### Lints and fixes files
-```
-npm run lint
-```
+- routing
+- container/presenter components
+- redux state pattern
+- abstracted CSS
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+## Getting Started
+
+1. Clone this repository
+
+   ```bash
+   git clone https://github.com/johnpapa/heroes-vue.git
+   cd heroes-vue
+   ```
+
+1. Install the npm packages
+
+   ```bash
+   npm install
+   ```
+
+1. Run the app!
+
+   ```bash
+   npm run quick
+   ```
+
+## Cypress Tests
+
+1. You can execute all of the UI tests by running the following steps
+
+   ```bash
+   npm run cypress
+   ```
+
+## Problems or Suggestions
+
+[Open an issue here](https://github.com/johnpapa/heroes-vue/issues)
