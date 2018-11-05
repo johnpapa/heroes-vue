@@ -1,0 +1,44 @@
+<template>
+  <a class="card-footer-item" :class="className" :aria-label="label" role="button" tabIndex="0" @click="handleClick" :data-index="dataIndex" :data-id="dataId">
+    <i :class="iconClasses"></i>
+    <span>{{label}}</span>
+  </a>
+</template>
+
+<script>
+export default {
+  name: 'ButtonFooter',
+  props: {
+    item: {
+      type: Object,
+      default: () => null,
+    },
+    className: {
+      type: String,
+      default: () => '',
+    },
+    label: {
+      type: String,
+      default: () => '',
+    },
+    dataIndex: {
+      type: Number,
+      default: () => null,
+    },
+    dataId: {
+      type: Number,
+      default: () => null,
+    },
+    iconClasses: {
+      type: String,
+      default: () => '',
+    },
+  },
+  methods: {
+    handleClick() {},
+  },
+};
+</script>
+
+<style lang="scss" scoped>
+</style>

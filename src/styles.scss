@@ -7,12 +7,14 @@ $react-light: #61dafb;
 $primary: $vue;
 $primary-light: $vue-light;
 $link: $primary; // #00b3e6; // #ff4081;
-
+$info: $primary;
 $shade-light: #fafafa;
 
 @import 'bulma/bulma.sass';
+// @import '~bulma/bulma';
 
-.menu-list .active-link {
+.menu-list .active-link,
+.menu-list .router-link-active {
   color: #fff;
   background-color: $link;
 }
@@ -163,7 +165,8 @@ p.card-header-title {
   width: 80px;
 }
 
-.modal-card-head, .modal-card-body {
+.modal-card-head,
+.modal-card-body {
   text-align: center;
 }
 

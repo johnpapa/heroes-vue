@@ -22,7 +22,10 @@ module.exports = {
         singleQuote: true,
         printWidth: '80'
       }
-    ]
+    ],
+    "vue/no-unused-components": ["error", {
+      "ignoreWhenBindingPresent": true
+    }]
   },
   parserOptions: {
     parser: 'babel-eslint'
