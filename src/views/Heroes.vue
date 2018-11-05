@@ -18,19 +18,23 @@
 </template>
 
 <script>
+import { mapActions, mapGetters, mapMutations } from 'vuex';
 import ListHeader from '@/components/ListHeader.vue';
 import HeroList from '@/components/HeroList.vue';
-import { mapActions, mapGetters, mapMutations } from 'vuex';
-// import { ADD_PERSON, UPDATE_PERSON, DELETE_PERSON } from '@/store';
+import { ADD_HERO, UPDATE_HERO, DELETE_HERO } from '@/store';
+
+const captains = console;
 
 export default {
   name: 'Heroes',
   data() {
     return {
+      heroToDelete: null,
       title: 'Heroes',
       routePath: '/heroes',
       // heroes: [{ id: 1, name: 'ward', description: 'hi' }],
       selected: null,
+      showModal: false,
     };
   },
   components: {
@@ -45,18 +49,34 @@ export default {
   },
   methods: {
     ...mapActions('heroes', ['getHeroes']),
+    ...mapMutations('heroes', [ADD_HERO, UPDATE_HERO, DELETE_HERO]),
     askToDelete(hero) {
-      // TODO
-      // this.heroToDelete = hero;
-      // this.showModal = true;
-      // if (this.heroToDelete.name) {
-      //   this.message = `Would you like to delete ${this.heroToDelete.name}?`;
-      // }
+      this.heroToDelete = hero;
+      this.showModal = true;
+      if (this.heroToDelete.name) {
+        this.message = `Would you like to delete ${this.heroToDelete.name}?`;
+        captains.log(this.message);
+      }
+    },
+    deleteHero() {
+      this.showModal = false;
+      if (this.heroToDelete) {
+        // TODO
+        // this.heroService
+        //   .delete(this.heroToDelete.id)
+        //   .subscribe(() => (this.heroToDelete = null));
+      }
+      this.close();
     },
     enableAddMode() {},
     refreshHeroes() {
       this.selected = null;
       this.getHeroes();
+    },
+    save(arg) {
+      const hero = arg.hero;
+      console.log('hero changed', hero);
+      arg.mode === 'add' ? this.ADD_HERO(hero) : this.UPDATE_HERO(hero);
     },
     select(hero) {
       this.selected = hero;
