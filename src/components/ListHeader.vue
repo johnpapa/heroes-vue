@@ -27,7 +27,9 @@ export default {
     };
   },
   methods: {
-    handleAdd() {},
+    handleAdd() {
+      this.$emit('add');
+    },
     handleRefresh() {
       this.$emit('refresh');
     },

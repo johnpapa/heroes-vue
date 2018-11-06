@@ -11,7 +11,7 @@ export default {
   props: {
     item: {
       type: Object,
-      default: () => null,
+      default() {},
     },
     className: {
       type: String,

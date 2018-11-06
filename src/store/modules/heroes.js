@@ -16,10 +16,12 @@ export default {
   },
   mutations: {
     [ADD_HERO](state, hero) {
-      state.heroes.push(hero); // mutable addition
+      state.heroes.unshift(hero); // mutable addition
     },
     [UPDATE_HERO](state, hero) {
-      state.heroes = [...state.heroes.filter(p => p.id !== hero.id), hero];
+      const index = state.heroes.findIndex(h => h.id === hero.id);
+      state.heroes.splice(index, 1, hero);
+      state.heroes = [...state.heroes];
     },
     [GET_HEROES](state, heroes) {
       state.heroes = heroes;
@@ -46,42 +48,27 @@ export default {
         .delete(`${API}/heroes/${hero.id}`)
         .then(response => {
           if (response.status !== 200) throw Error(response.message);
-          const heroes = response.data;
           commit(DELETE_HERO, hero);
-          return heroes;
+          return null;
         })
         .catch(console.error);
     },
-
-    // import axios from 'axios';
-
-    // const API = '/api';
-    // const captains = console;
-
-    // export const deleteHeroApi = async hero => {
-    //   const response = await axios.delete(`${API}/heroes/${hero.id}`);
-    //   if (response.status !== 200) throw Error(response.message);
-    //   return response.data;
-    // };
-
-    // export const updateHeroApi = async hero => {
-    //   captains.log(hero.id);
-    //   const response = await axios.put(`${API}/heroes/${hero.id}`, hero);
-    //   if (response.status !== 200) throw Error(response.message);
-    //   return response.data;
-    // };
-
-    // export const addHeroApi = async hero => {
-    //   const response = await axios.post(`${API}/heroes`, hero);
-    //   if (response.status !== 201) throw Error(response.message);
-    //   return response.data;
-    // };
-
-    // export const loadHeroesApi = async () => {
-    //   const response = await axios.get(`${API}/heroes`);
-    //   if (response.status !== 200) throw Error(response.message);
-    //   return response.data;
-    // }
+    updateHeroAction({ commit }, hero) {
+      return axios.put(`${API}/heroes/${hero.id}`, hero).then(response => {
+        if (response.status !== 200) throw Error(response.message);
+        const updatedHero = response.data;
+        commit(UPDATE_HERO, updatedHero);
+        return updatedHero;
+      });
+    },
+    addHeroAction({ commit }, hero) {
+      return axios.post(`${API}/heroes`, hero).then(response => {
+        if (response.status !== 201) throw Error(response.message);
+        const addedHero = response.data;
+        commit(ADD_HERO, addedHero);
+        return addedHero;
+      });
+    },
   },
   getters: {
     // selectors

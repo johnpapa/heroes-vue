@@ -7,8 +7,7 @@
           <HeroList :heroes="heroes" :selectedHero="selected" @selected="select($event)" @deleted="askToDelete($event)"></HeroList>
         </div>
         <div v-if="selected">
-          {{selected.name}}
-          <!-- <app-hero-detail [hero]="selected" (unselect)="clear()" (save)="save($event)"></app-hero-detail> -->
+          <HeroDetail :hero="selected" @unselect="clear" @save="save"></HeroDetail>
         </div>
       </div>
     </div>
@@ -18,11 +17,11 @@
 </template>
 
 <script>
-import { mapActions, mapGetters, mapMutations } from 'vuex';
+import { mapActions, mapGetters } from 'vuex';
 import ListHeader from '@/components/ListHeader.vue';
+import HeroDetail from '@/components/HeroDetail.vue';
 import HeroList from '@/components/HeroList.vue';
 import Modal from '@/components/Modal.vue';
-import { ADD_HERO, UPDATE_HERO } from '@/store';
 
 const captains = console;
 
@@ -33,7 +32,6 @@ export default {
       heroToDelete: null,
       message: '',
       routePath: '/heroes',
-      // heroes: [{ id: 1, name: 'ward', description: 'hi' }],
       selected: null,
       showModal: false,
       title: 'Heroes',
@@ -42,6 +40,7 @@ export default {
   components: {
     ListHeader,
     HeroList,
+    HeroDetail,
     Modal,
   },
   created() {
@@ -51,8 +50,12 @@ export default {
     ...mapGetters('heroes', { heroes: 'heroes' }),
   },
   methods: {
-    ...mapActions('heroes', ['getHeroesAction', 'deleteHeroAction']),
-    ...mapMutations('heroes', [ADD_HERO, UPDATE_HERO]),
+    ...mapActions('heroes', [
+      'getHeroesAction',
+      'deleteHeroAction',
+      'addHeroAction',
+      'updateHeroAction',
+    ]),
     askToDelete(hero) {
       this.heroToDelete = hero;
       this.showModal = true;
@@ -75,15 +78,16 @@ export default {
       }
       this.clear();
     },
-    enableAddMode() {},
+    enableAddMode() {
+      this.selected = {};
+    },
     getHeroes() {
       this.getHeroesAction();
       this.clear();
     },
-    save(arg) {
-      const hero = arg.hero;
+    save(hero) {
       console.log('hero changed', hero);
-      arg.mode === 'add' ? this.ADD_HERO(hero) : this.UPDATE_HERO(hero);
+      hero.id ? this.updateHeroAction(hero) : this.addHeroAction(hero);
     },
     select(hero) {
       this.selected = hero;
