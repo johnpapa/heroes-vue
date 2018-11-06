@@ -1,6 +1,5 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-// import Heroes from '@/views/Heroes.vue';
 
 Vue.use(Router);
 
@@ -17,13 +16,13 @@ export default new Router({
       name: 'heroes',
       // component: Heroes,
       component: () =>
-        import(/* webpackChunkName: "about" */ './views/Heroes.vue'),
+        import(/* webpackChunkName: "about" */ './views/heroes/Heroes.vue'),
     },
     {
       path: '/villains',
       name: 'villains',
       component: () =>
-        import(/* webpackChunkName: "about" */ './views/Villains.vue'),
+        import(/* webpackChunkName: "about" */ './views/villains/Villains.vue'),
     },
     {
       path: '/about',

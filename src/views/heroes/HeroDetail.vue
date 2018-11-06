@@ -35,7 +35,7 @@
 </template>
 
 <script>
-import ButtonFooter from './ButtonFooter.vue';
+import ButtonFooter from '@/components/ButtonFooter.vue';
 
 export default {
   name: 'HeroDetail',

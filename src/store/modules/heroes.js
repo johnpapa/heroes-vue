@@ -27,7 +27,7 @@ export default {
       state.heroes = heroes;
     },
     [DELETE_HERO](state, hero) {
-      state.heroes = state.heroes.filter(p => p.id !== hero.id);
+      state.heroes = [...state.heroes.filter(p => p.id !== hero.id)];
     },
   },
   actions: {
