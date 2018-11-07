@@ -18,10 +18,10 @@
 
 <script>
 import { mapActions, mapGetters } from 'vuex';
-import ListHeader from '@/components/ListHeader.vue';
-import Modal from '@/components/Modal.vue';
-import HeroDetail from './HeroDetail.vue';
-import HeroList from './HeroList.vue';
+import ListHeader from '@/components/list-header.vue';
+import Modal from '@/components/modal.vue';
+import HeroDetail from './hero-detail.vue';
+import HeroList from './hero-list.vue';
 
 const captains = console;
 

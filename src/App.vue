@@ -12,8 +12,8 @@
 
 <script>
 // import { mapActions, mapGetters, mapMutations } from 'vuex';
-import HeaderBar from '@/components/HeaderBar.vue';
-import NavBar from '@/components/NavBar.vue';
+import HeaderBar from '@/components/header-bar.vue';
+import NavBar from '@/components/nav-bar.vue';
 // import { ADD_PLANET, UPDATE_PLANET, DELETE_PLANET } from '@/store';
 
 export default {

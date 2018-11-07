@@ -37,11 +37,6 @@
 <script>
 export default {
   name: 'HeaderBar',
-  data() {
-    return {
-      title: 'the title',
-    };
-  },
 };
 </script>
 

@@ -18,10 +18,10 @@
 
 <script>
 import { mapActions, mapGetters } from 'vuex';
-import ListHeader from '@/components/ListHeader.vue';
-import Modal from '@/components/Modal.vue';
-import VillainDetail from './VillainDetail.vue';
-import VillainList from './VillainList.vue';
+import ListHeader from '@/components/list-header.vue';
+import Modal from '@/components/modal.vue';
+import VillainDetail from './villain-detail.vue';
+import VillainList from './villain-list.vue';
 
 const captains = console;
 

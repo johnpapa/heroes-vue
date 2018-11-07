@@ -16,13 +16,13 @@ export default new Router({
       name: 'heroes',
       // component: Heroes,
       component: () =>
-        import(/* webpackChunkName: "about" */ './views/heroes/Heroes.vue'),
+        import(/* webpackChunkName: "about" */ './views/heroes/heroes.vue'),
     },
     {
       path: '/villains',
       name: 'villains',
       component: () =>
-        import(/* webpackChunkName: "about" */ './views/villains/Villains.vue'),
+        import(/* webpackChunkName: "about" */ './views/villains/villains.vue'),
     },
     {
       path: '/about',
@@ -31,7 +31,7 @@ export default new Router({
       // this generates a separate chunk (about.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
       component: () =>
-        import(/* webpackChunkName: "about" */ './views/About.vue'),
+        import(/* webpackChunkName: "about" */ './views/about.vue'),
     },
   ],
 });
