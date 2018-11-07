@@ -1,5 +1,5 @@
 <template>
-  <div id="navbarBasicExample" class="navbar-menu">
+  <div class="navbar-menu">
     <div class="navbar-end">
       <div class="navbar-item">
         <div class="buttons">

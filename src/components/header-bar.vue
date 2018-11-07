@@ -1,5 +1,5 @@
 <template>
-  <header class="">
+  <header>
     <nav class="navbar has-background-dark is-dark" role="navigation" aria-label="main navigation">
       <HeaderBarBrand></HeaderBarBrand>
       <HeaderBarLinks></HeaderBarLinks>
