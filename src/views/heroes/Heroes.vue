@@ -3,12 +3,8 @@
     <ListHeader :title="title" @refresh="getHeroes" @add="enableAddMode" :routePath="routePath"></ListHeader>
     <div class="columns is-multiline is-variable">
       <div class="column is-8" v-if="heroes">
-        <div v-if="!selected">
-          <HeroList :heroes="heroes" :selectedHero="selected" @selected="select($event)" @deleted="askToDelete($event)"></HeroList>
-        </div>
-        <div v-if="selected">
-          <HeroDetail :hero="selected" @unselect="clear" @save="save"></HeroDetail>
-        </div>
+        <HeroList v-if="!selected" :heroes="heroes" :selectedHero="selected" @selected="select($event)" @deleted="askToDelete($event)"></HeroList>
+        <HeroDetail v-if="selected" :hero="selected" @unselect="clear" @save="save"></HeroDetail>
       </div>
     </div>
 
