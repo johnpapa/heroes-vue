@@ -42,6 +42,16 @@ const villains = [
     name: 'Haley',
     description: 'pen wielder',
   },
+  {
+    id: 'VillainElla',
+    name: 'Ella',
+    description: 'fashionista',
+  },
+  {
+    id: 'VillainLandon',
+    name: 'Landon',
+    description: 'Mandalorian mauler',
+  },
 ];
 
 const data = { heroes: heroes, villains: villains };

@@ -1,12 +1,11 @@
 import axios from 'axios';
+import { API } from '../config';
 import {
   ADD_VILLAIN,
   DELETE_VILLAIN,
   GET_VILLAINS,
   UPDATE_VILLAIN,
 } from './mutation-types';
-
-const API = '/api';
 
 export default {
   strict: process.env.NODE_ENV !== 'production',

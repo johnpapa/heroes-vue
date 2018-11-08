@@ -1,12 +1,11 @@
 import axios from 'axios';
+import { API } from '../config';
 import {
   ADD_HERO,
   DELETE_HERO,
   GET_HEROES,
   UPDATE_HERO,
 } from './mutation-types';
-
-const API = '/api';
 
 export default {
   strict: process.env.NODE_ENV !== 'production',
