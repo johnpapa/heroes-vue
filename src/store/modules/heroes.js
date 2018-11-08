@@ -70,10 +70,6 @@ export default {
     },
   },
   getters: {
-    // selectors
     heroes: state => state.heroes,
-    // sortedPeople(state) {
-    //   return [...state.heroes].sort((a, b) => a.id - b.id);
-    // },
   },
 };
