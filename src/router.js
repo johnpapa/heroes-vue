@@ -14,7 +14,6 @@ export default new Router({
     {
       path: '/heroes',
       name: 'heroes',
-      // component: Heroes,
       component: () =>
         import(/* webpackChunkName: "heroes" */ './views/heroes/heroes.vue'),
     },
