@@ -54,7 +54,6 @@ export default {
   },
   watch: {
     hero() {
-      // newHero, originalHero) {
       if (this.hero && this.hero.id) {
         this.editingHero = { ...this.hero };
         this.addMode = false;

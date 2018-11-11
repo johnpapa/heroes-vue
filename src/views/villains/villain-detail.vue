@@ -54,7 +54,6 @@ export default {
   },
   watch: {
     villain() {
-      // newVillain, originalVillain) {
       if (this.villain && this.villain.id) {
         this.editingVillain = { ...this.villain };
         this.addMode = false;
