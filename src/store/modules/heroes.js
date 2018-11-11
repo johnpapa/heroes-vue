@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { API } from '../config';
+import { parseItem, parseList } from './action-utils';
 import {
   ADD_HERO,
   DELETE_HERO,
@@ -35,8 +36,7 @@ export default {
       return axios
         .get(`${API}/heroes`)
         .then(response => {
-          if (response.status !== 200) throw Error(response.message);
-          const heroes = response.data;
+          const heroes = parseList(response);
           commit(GET_HEROES, heroes);
           return heroes;
         })
@@ -46,7 +46,7 @@ export default {
       return axios
         .delete(`${API}/heroes/${hero.id}`)
         .then(response => {
-          if (response.status !== 200) throw Error(response.message);
+          const hero = parseItem(response, 200);
           commit(DELETE_HERO, hero);
           return null;
         })
@@ -54,16 +54,14 @@ export default {
     },
     updateHeroAction({ commit }, hero) {
       return axios.put(`${API}/heroes/${hero.id}`, hero).then(response => {
-        if (response.status !== 200) throw Error(response.message);
-        const updatedHero = response.data;
+        const updatedHero = parseItem(response, 200);
         commit(UPDATE_HERO, updatedHero);
         return updatedHero;
       });
     },
     addHeroAction({ commit }, hero) {
       return axios.post(`${API}/heroes`, hero).then(response => {
-        if (response.status !== 201) throw Error(response.message);
-        const addedHero = response.data;
+        const addedHero = parseItem(response, 201);
         commit(ADD_HERO, addedHero);
         return addedHero;
       });
