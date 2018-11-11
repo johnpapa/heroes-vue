@@ -16,13 +16,13 @@ export default new Router({
       name: 'heroes',
       // component: Heroes,
       component: () =>
-        import(/* webpackChunkName: "about" */ './views/heroes/heroes.vue'),
+        import(/* webpackChunkName: "heroes" */ './views/heroes/heroes.vue'),
     },
     {
       path: '/villains',
       name: 'villains',
       component: () =>
-        import(/* webpackChunkName: "about" */ './views/villains/villains.vue'),
+        import(/* webpackChunkName: "villains" */ './views/villains/villains.vue'),
     },
     {
       path: '/about',
