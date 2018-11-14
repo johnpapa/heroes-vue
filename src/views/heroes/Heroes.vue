@@ -82,7 +82,7 @@ export default {
       this.clear();
     },
     save(hero) {
-      console.log('hero changed', hero);
+      captains.log('hero changed', hero);
       hero.id ? this.updateHeroAction(hero) : this.addHeroAction(hero);
     },
     select(hero) {

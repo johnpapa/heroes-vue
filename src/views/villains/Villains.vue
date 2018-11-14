@@ -84,7 +84,7 @@ export default {
       this.clear();
     },
     save(villain) {
-      console.log('villain changed', villain);
+      captains.log('villain changed', villain);
       villain.id
         ? this.updateVillainAction(villain)
         : this.addVillainAction(villain);
