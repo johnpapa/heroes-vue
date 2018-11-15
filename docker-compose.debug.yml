@@ -1,0 +1,15 @@
+version: '2.1'
+
+services:
+  heroes-vue:
+    image: heroes-vue
+    build: .
+      context: .
+      args:
+        VUE_APP_API: ${VUE_APP_API}
+    env_file:
+      - .env.development
+    ports:
+      - 8626:8626
+      - 9229:9229
+    command: node --inspect=0.0.0.0:9229 server.js
