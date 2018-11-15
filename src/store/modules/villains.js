@@ -7,6 +7,8 @@ import {
   UPDATE_VILLAIN,
 } from './mutation-types';
 
+const captains = console;
+
 export default {
   strict: process.env.NODE_ENV !== 'production',
   namespaced: true,
@@ -40,7 +42,7 @@ export default {
           commit(GET_VILLAINS, villains);
           return villains;
         })
-        .catch(console.error);
+        .catch(captains.error);
     },
     deleteVillainAction({ commit }, villain) {
       return axios
@@ -50,7 +52,7 @@ export default {
           commit(DELETE_VILLAIN, villain);
           return null;
         })
-        .catch(console.error);
+        .catch(captains.error);
     },
     updateVillainAction({ commit }, villain) {
       return axios
