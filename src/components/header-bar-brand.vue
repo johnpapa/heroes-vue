@@ -8,11 +8,11 @@
       <span class="of">OF</span>
       <span class="heroes">HEROES</span>
     </router-link>
-    <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+    <button class="link navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
       <span aria-hidden="true" />
       <span aria-hidden="true" />
       <span aria-hidden="true" />
-    </a>
+    </button>
   </div>
 </template>
 
