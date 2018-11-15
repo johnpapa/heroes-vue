@@ -1,1 +1,3 @@
-export const API = process.env.VUE_APP_API;
+const API = process.env.VUE_APP_API;
+
+export { API as default };
