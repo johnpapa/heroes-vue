@@ -10,6 +10,6 @@ services:
     env_file:
       - .env.development
     ports:
-      - 8626:8626
+      - 9626:9626
       - 9229:9229
     command: node --inspect=0.0.0.0:9229 server.js

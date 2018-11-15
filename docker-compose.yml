@@ -10,4 +10,4 @@ services:
     env_file:
       - .env
     ports:
-      - 8626:8626
+      - 9626:9626

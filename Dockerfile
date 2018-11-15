@@ -23,5 +23,5 @@ WORKDIR /usr/src/app
 COPY --from=node-server /usr/src /usr/src
 # get the client app
 COPY --from=client-app /usr/src/app/dist ./public
-EXPOSE 8626
+EXPOSE 9626
 CMD ["node", "server.js"]
