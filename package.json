@@ -8,7 +8,7 @@
     "lint": "vue-cli-service lint",
     "quick": "concurrently \"npm run backend\" \"npm run serve\"",
     "cypress": "npx cypress open",
-    "backend": "json-server --watch db.json --routes routes.json --port 9626 --middlewares ./node_modules/json-server-reset"
+    "backend": "json-server --watch db.json --routes routes.json --port 8626 --middlewares ./node_modules/json-server-reset"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.8",
