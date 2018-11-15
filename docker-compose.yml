@@ -1,0 +1,13 @@
+version: '2.1'
+
+services:
+  heroes-vue:
+    image: heroes-vue
+    build:
+      context: .
+      args:
+        VUE_APP_API: ${VUE_APP_API}
+    env_file:
+      - .env
+    ports:
+      - 9626:9626

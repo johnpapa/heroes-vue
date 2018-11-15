@@ -16,6 +16,7 @@
     "@fortawesome/vue-fontawesome": "^0.1.2",
     "axios": "^0.18.0",
     "bulma": "^0.7.2",
+    "express": "^4.16.4",
     "i": "^0.3.6",
     "npm": "^6.4.1",
     "vue": "^2.5.17",
