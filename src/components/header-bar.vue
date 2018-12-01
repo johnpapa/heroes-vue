@@ -1,6 +1,10 @@
 <template>
   <header>
-    <nav class="navbar has-background-dark is-dark" role="navigation" aria-label="main navigation">
+    <nav
+      class="navbar has-background-dark is-dark"
+      role="navigation"
+      aria-label="main navigation"
+    >
       <HeaderBarBrand></HeaderBarBrand>
       <HeaderBarLinks></HeaderBarLinks>
     </nav>
@@ -17,5 +21,4 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
-</style>
+<style lang="scss" scoped></style>
