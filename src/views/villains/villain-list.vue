@@ -1,11 +1,31 @@
 <template>
   <ul class="list">
-    <li v-for="(villain, index) in villains" :key="villain.id" role="presentation">
+    <li
+      v-for="(villain, index) in villains"
+      :key="villain.id"
+      role="presentation"
+    >
       <div class="card">
         <CardContent :name="villain.name" :description="villain.description" />
         <footer class="card-footer">
-          <ButtonFooter class="delete-item" iconClasses="fas fa-trash" @clicked="deleteVillain" label="Delete" :dataIndex="index" :dataId="villain.id" :item="villain" />
-          <ButtonFooter class="edit-item" iconClasses="fas fa-edit" @clicked="selectVillain" label="Edit" :dataIndex="index" :dataId="villain.id" :item="villain" />
+          <ButtonFooter
+            class="delete-item"
+            iconClasses="fas fa-trash"
+            @clicked="deleteVillain"
+            label="Delete"
+            :dataIndex="index"
+            :dataId="villain.id"
+            :item="villain"
+          />
+          <ButtonFooter
+            class="edit-item"
+            iconClasses="fas fa-edit"
+            @clicked="selectVillain"
+            label="Edit"
+            :dataIndex="index"
+            :dataId="villain.id"
+            :item="villain"
+          />
         </footer>
       </div>
     </li>
@@ -43,5 +63,4 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
-</style>
+<style lang="scss" scoped></style>
