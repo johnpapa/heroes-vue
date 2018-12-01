@@ -70,7 +70,7 @@ export default {
       this.closeModal();
       if (this.villainToDelete) {
         captains.log(
-          `You said you want to delete ${this.villainToDelete.name}`
+          `You said you want to delete ${this.villainToDelete.name}`,
         );
         this.deleteVillainAction(this.villainToDelete);
       }
