@@ -4,8 +4,24 @@
       <div class="card">
         <CardContent :name="hero.name" :description="hero.description" />
         <footer class="card-footer">
-          <ButtonFooter class="delete-item" iconClasses="fas fa-trash" @clicked="deleteHero" label="Delete" :dataIndex="index" :dataId="hero.id" :item="hero" />
-          <ButtonFooter class="edit-item" iconClasses="fas fa-edit" @clicked="selectHero" label="Edit" :dataIndex="index" :dataId="hero.id" :item="hero" />
+          <ButtonFooter
+            class="delete-item"
+            iconClasses="fas fa-trash"
+            @clicked="deleteHero"
+            label="Delete"
+            :dataIndex="index"
+            :dataId="hero.id"
+            :item="hero"
+          />
+          <ButtonFooter
+            class="edit-item"
+            iconClasses="fas fa-edit"
+            @clicked="selectHero"
+            label="Edit"
+            :dataIndex="index"
+            :dataId="hero.id"
+            :item="hero"
+          />
         </footer>
       </div>
     </li>
@@ -43,5 +59,4 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
-</style>
+<style lang="scss" scoped></style>

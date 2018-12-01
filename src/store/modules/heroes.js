@@ -1,12 +1,14 @@
 import axios from 'axios';
-import { API } from '../config';
 import { parseItem, parseList } from './action-utils';
+import API from '../config';
 import {
   ADD_HERO,
   DELETE_HERO,
   GET_HEROES,
   UPDATE_HERO,
 } from './mutation-types';
+
+const captains = console;
 
 export default {
   strict: process.env.NODE_ENV !== 'production',
@@ -40,7 +42,7 @@ export default {
           commit(GET_HEROES, heroes);
           return heroes;
         })
-        .catch(console.error);
+        .catch(captains.error);
     },
     deleteHeroAction({ commit }, hero) {
       return axios
@@ -50,7 +52,7 @@ export default {
           commit(DELETE_HERO, hero);
           return null;
         })
-        .catch(console.error);
+        .catch(captains.error);
     },
     updateHeroAction({ commit }, hero) {
       return axios.put(`${API}/heroes/${hero.id}`, hero).then(response => {

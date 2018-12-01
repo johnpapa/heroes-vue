@@ -1,35 +1,60 @@
 <template>
   <div class="card edit-detail">
     <header class="card-header">
-      <p class="card-header-title">
-        {{editingHero.name}}
-      </p>
+      <p class="card-header-title">{{ editingHero.name }}</p>
     </header>
     <div class="card-content">
       <div class="content">
         <div class="field" v-if="editingHero.id">
-          <label class="label" for="id">
-            id
-          </label>
-          <input name="id" class="input" type="text" v-model="editingHero.id" placeholder="e.g. HeroColleen" readOnly />
+          <label class="label" for="id"> id </label>
+          <input
+            name="id"
+            class="input"
+            type="text"
+            v-model="editingHero.id"
+            placeholder="e.g. HeroColleen"
+            readOnly
+          />
         </div>
         <div class="field">
-          <label class="label" for="name">
-            name
-          </label>
-          <input name="name" class="input" type="text" v-model="editingHero.name" placeholder="e.g. Colleen" />
+          <label class="label" for="name"> name </label>
+          <input
+            name="name"
+            class="input"
+            type="text"
+            v-model="editingHero.name"
+            placeholder="e.g. Colleen"
+          />
         </div>
         <div class="field">
-          <label class="label" for="description">
-            description
-          </label>
-          <input name="description" class="input" type="text" v-model="editingHero.description" placeholder="dance fight!" />
+          <label class="label" for="description"> description </label>
+          <input
+            name="description"
+            class="input"
+            type="text"
+            v-model="editingHero.description"
+            placeholder="dance fight!"
+          />
         </div>
       </div>
     </div>
     <footer class="card-footer ">
-      <ButtonFooter class="card-footer-item" :className="'cancel-button'" :iconClasses="'fas fa-undo'" @clicked="clear" label="Cancel" :item="editingHero"></ButtonFooter>
-      <ButtonFooter class="card-footer-item" :className="'save-button'" :iconClasses="'fas fa-save'" @clicked="saveHero" label="Save" :item="editingHero"></ButtonFooter>
+      <ButtonFooter
+        class="card-footer-item"
+        :className="'cancel-button'"
+        :iconClasses="'fas fa-undo'"
+        @clicked="clear"
+        label="Cancel"
+        :item="editingHero"
+      ></ButtonFooter>
+      <ButtonFooter
+        class="card-footer-item"
+        :className="'save-button'"
+        :iconClasses="'fas fa-save'"
+        @clicked="saveHero"
+        label="Save"
+        :item="editingHero"
+      ></ButtonFooter>
     </footer>
   </div>
 </template>
@@ -75,5 +100,4 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
-</style>
+<style lang="scss" scoped></style>

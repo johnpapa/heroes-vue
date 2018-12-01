@@ -1,14 +1,36 @@
 <template>
   <div class="content-container">
-    <ListHeader :title="title" @refresh="getVillains" @add="enableAddMode" :routePath="routePath"></ListHeader>
+    <ListHeader
+      :title="title"
+      @refresh="getVillains"
+      @add="enableAddMode"
+      :routePath="routePath"
+    ></ListHeader>
     <div class="columns is-multiline is-variable">
       <div class="column is-8" v-if="villains">
-        <VillainList v-if="!selected" :villains="villains" :selectedVillain="selected" @selected="select($event)" @deleted="askToDelete($event)"></VillainList>
-        <VillainDetail v-if="selected" :villain="selected" @unselect="clear" @save="save"></VillainDetail>
+        <VillainList
+          v-if="!selected"
+          :villains="villains"
+          :selectedVillain="selected"
+          @selected="select($event)"
+          @deleted="askToDelete($event)"
+        ></VillainList>
+        <VillainDetail
+          v-if="selected"
+          :villain="selected"
+          @unselect="clear"
+          @save="save"
+        ></VillainDetail>
       </div>
     </div>
 
-    <Modal class="modal-villain" :message="message" :isOpen="showModal" @handleNo="closeModal" @handleYes="deleteVillain"></Modal>
+    <Modal
+      class="modal-villain"
+      :message="message"
+      :isOpen="showModal"
+      @handleNo="closeModal"
+      @handleYes="deleteVillain"
+    ></Modal>
   </div>
 </template>
 
@@ -84,7 +106,7 @@ export default {
       this.clear();
     },
     save(villain) {
-      console.log('villain changed', villain);
+      captains.log('villain changed', villain);
       villain.id
         ? this.updateVillainAction(villain)
         : this.addVillainAction(villain);
@@ -96,5 +118,4 @@ export default {
 };
 </script>
 
-<style lang="scss">
-</style>
+<style lang="scss"></style>
