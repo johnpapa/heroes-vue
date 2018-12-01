@@ -3,12 +3,24 @@
     <ListHeader :title="title" @refresh="getVillains" @add="enableAddMode" :routePath="routePath"></ListHeader>
     <div class="columns is-multiline is-variable">
       <div class="column is-8" v-if="villains">
-        <VillainList v-if="!selected" :villains="villains" :selectedVillain="selected" @selected="select($event)" @deleted="askToDelete($event)"></VillainList>
+        <VillainList
+          v-if="!selected"
+          :villains="villains"
+          :selectedVillain="selected"
+          @selected="select($event)"
+          @deleted="askToDelete($event)"
+        ></VillainList>
         <VillainDetail v-if="selected" :villain="selected" @unselect="clear" @save="save"></VillainDetail>
       </div>
     </div>
 
-    <Modal class="modal-villain" :message="message" :isOpen="showModal" @handleNo="closeModal" @handleYes="deleteVillain"></Modal>
+    <Modal
+      class="modal-villain"
+      :message="message"
+      :isOpen="showModal"
+      @handleNo="closeModal"
+      @handleYes="deleteVillain"
+    ></Modal>
   </div>
 </template>
 
@@ -70,7 +82,7 @@ export default {
       this.closeModal();
       if (this.villainToDelete) {
         captains.log(
-          `You said you want to delete ${this.villainToDelete.name}`,
+          `You said you want to delete ${this.villainToDelete.name}`
         );
         this.deleteVillainAction(this.villainToDelete);
       }
