@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import Router from 'vue-router';
+import PageNotFound from '@/components/page-not-found.vue';
 
 Vue.use(Router);
 
@@ -32,5 +33,9 @@ export default new Router({
       component: () =>
         import(/* webpackChunkName: "about" */ './views/about.vue'),
     },
+    {
+      path: '*',
+      component: PageNotFound
+    }
   ],
 });

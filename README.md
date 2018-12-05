@@ -4,7 +4,7 @@ This project was created to help represent a fundamental app written with Vue. T
 
 by [John Papa](http://twitter.com/john_papa)
 
-Comparative apps written with Angular and React can be found at at [github.com/johnpapa/heroes-angular](https://github.com/johnpapa/heroes-angular) and [github.com/johnpapa/heroes-react](https://github.com/johnpapa/heroes-react)
+Comparative apps written with Angular and React can be found at [github.com/johnpapa/heroes-angular](https://github.com/johnpapa/heroes-angular) and [github.com/johnpapa/heroes-react](https://github.com/johnpapa/heroes-react)
 
 ## Why
 
