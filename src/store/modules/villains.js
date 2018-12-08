@@ -1,5 +1,6 @@
 import axios from 'axios';
 import API from '../config';
+import { parseItem, parseList } from './action-utils';
 import {
   ADD_VILLAIN,
   DELETE_VILLAIN,
@@ -37,8 +38,7 @@ export default {
       return axios
         .get(`${API}/villains`)
         .then(response => {
-          if (response.status !== 200) throw Error(response.message);
-          const villains = response.data;
+          const villains = parseList(response);
           commit(GET_VILLAINS, villains);
           return villains;
         })
@@ -48,7 +48,7 @@ export default {
       return axios
         .delete(`${API}/villains/${villain.id}`)
         .then(response => {
-          if (response.status !== 200) throw Error(response.message);
+          const villain = parseItem(response, 200);
           commit(DELETE_VILLAIN, villain);
           return null;
         })
@@ -58,16 +58,14 @@ export default {
       return axios
         .put(`${API}/villains/${villain.id}`, villain)
         .then(response => {
-          if (response.status !== 200) throw Error(response.message);
-          const updatedvillain = response.data;
+          const updatedvillain = parseItem(response, 200);
           commit(UPDATE_VILLAIN, updatedvillain);
           return updatedvillain;
         });
     },
     addVillainAction({ commit }, villain) {
       return axios.post(`${API}/villains`, villain).then(response => {
-        if (response.status !== 201) throw Error(response.message);
-        const addedVillain = response.data;
+        const addedVillain = parseItem(response, 201);
         commit(ADD_VILLAIN, addedVillain);
         return addedVillain;
       });

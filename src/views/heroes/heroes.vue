@@ -1,26 +1,16 @@
 <template>
   <div class="content-container">
-    <ListHeader
-      :title="title"
-      @refresh="getHeroes"
-      @add="enableAddMode"
-      :routePath="routePath"
-    ></ListHeader>
+    <ListHeader :title="title" @refresh="getHeroes" @add="enableAddMode" :routePath="routePath"></ListHeader>
     <div class="columns is-multiline is-variable">
       <div class="column is-8" v-if="heroes">
         <HeroList
           v-if="!selected"
           :heroes="heroes"
           :selectedHero="selected"
-          @selected="select($event)"
           @deleted="askToDelete($event)"
+          @selected="select($event)"
         ></HeroList>
-        <HeroDetail
-          v-if="selected"
-          :hero="selected"
-          @unselect="clear"
-          @save="save"
-        ></HeroDetail>
+        <HeroDetail v-if="selected" :hero="selected" @unselect="clear" @save="save"></HeroDetail>
       </div>
     </div>
 
@@ -114,4 +104,5 @@ export default {
 };
 </script>
 
-<style lang="scss"></style>
+<style lang="scss">
+</style>

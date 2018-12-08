@@ -6,54 +6,54 @@
     <div class="card-content">
       <div class="content">
         <div class="field" v-if="editingVillain.id">
-          <label class="label" for="id"> id </label>
+          <label class="label" for="id">id</label>
           <input
-            name="id"
             class="input"
+            name="id"
+            placeholder="e.g. VillainColleen"
+            readonly
             type="text"
             v-model="editingVillain.id"
-            placeholder="e.g. VillainColleen"
-            readOnly
-          />
+          >
         </div>
         <div class="field">
-          <label class="label" for="name"> name </label>
+          <label class="label" for="name">name</label>
           <input
-            name="name"
             class="input"
+            name="name"
+            placeholder="e.g. Colleen"
             type="text"
             v-model="editingVillain.name"
-            placeholder="e.g. Colleen"
-          />
+          >
         </div>
         <div class="field">
-          <label class="label" for="description"> description </label>
+          <label class="label" for="description">description</label>
           <input
-            name="description"
             class="input"
+            name="description"
+            placeholder="dance fight!"
             type="text"
             v-model="editingVillain.description"
-            placeholder="dance fight!"
-          />
+          >
         </div>
       </div>
     </div>
-    <footer class="card-footer ">
+    <footer class="card-footer">
       <ButtonFooter
         class="card-footer-item"
+        label="Cancel"
         :className="'cancel-button'"
         :iconClasses="'fas fa-undo'"
-        @clicked="clear"
-        label="Cancel"
         :item="editingVillain"
+        @clicked="clear"
       ></ButtonFooter>
       <ButtonFooter
         class="card-footer-item"
         :className="'save-button'"
         :iconClasses="'fas fa-save'"
-        @clicked="saveVillain"
-        label="Save"
         :item="editingVillain"
+        label="Save"
+        @clicked="saveVillain"
       ></ButtonFooter>
     </footer>
   </div>
@@ -79,7 +79,6 @@ export default {
   },
   watch: {
     villain() {
-      // newVillain, originalVillain) {
       if (this.villain && this.villain.id) {
         this.editingVillain = { ...this.villain };
         this.addMode = false;
@@ -101,4 +100,5 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+</style>

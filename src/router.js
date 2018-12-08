@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import Router from 'vue-router';
+import PageNotFound from '@/components/page-not-found.vue';
 
 Vue.use(Router);
 
@@ -15,13 +16,13 @@ export default new Router({
       path: '/heroes',
       name: 'heroes',
       component: () =>
-        import(/* webpackChunkName: "about" */ './views/heroes/heroes.vue'),
+        import(/* webpackChunkName: "heroes" */ './views/heroes/heroes.vue'),
     },
     {
       path: '/villains',
       name: 'villains',
       component: () =>
-        import(/* webpackChunkName: "about" */ './views/villains/villains.vue'),
+        import(/* webpackChunkName: "villains" */ './views/villains/villains.vue'),
     },
     {
       path: '/about',
@@ -32,5 +33,9 @@ export default new Router({
       component: () =>
         import(/* webpackChunkName: "about" */ './views/about.vue'),
     },
+    {
+      path: '*',
+      component: PageNotFound
+    }
   ],
 });
