@@ -35,7 +35,7 @@ export default new Router({
     },
     {
       path: '*',
-      component: PageNotFound
-    }
+      component: PageNotFound,
+    },
   ],
 });
