@@ -48,7 +48,7 @@ export default {
       return axios
         .delete(`${API}/heroes/${hero.id}`)
         .then(response => {
-          const hero = parseItem(response, 200);
+          parseItem(response, 200);
           commit(DELETE_HERO, hero);
           return null;
         })
