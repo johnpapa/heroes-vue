@@ -8,19 +8,20 @@
     "lint": "vue-cli-service lint",
     "quick": "concurrently \"npm run backend\" \"npm run serve\"",
     "cypress": "npx cypress open",
+    "test:e2e": "vue-cli-service test:e2e",
     "e2e": "concurrently \"npm run quick\" \"npm run cypress\"",
     "backend": "json-server --watch db.json --routes routes.json --port 9627 --middlewares ./node_modules/json-server-reset"
   },
   "dependencies": {
-    "@fortawesome/fontawesome-svg-core": "^1.2.8",
-    "@fortawesome/free-solid-svg-icons": "^5.5.0",
-    "@fortawesome/vue-fontawesome": "^0.1.2",
+    "@fortawesome/fontawesome-svg-core": "^1.2.10",
+    "@fortawesome/free-solid-svg-icons": "^5.6.1",
+    "@fortawesome/vue-fontawesome": "^0.1.3",
     "axios": "^0.18.0",
     "bulma": "^0.7.2",
     "express": "^4.16.4",
     "i": "^0.3.6",
-    "npm": "^6.4.1",
-    "vue": "^2.5.17",
+    "npm": "^6.5.0",
+    "vue": "^2.5.21",
     "vue-router": "^3.0.1",
     "vuex": "^3.0.1"
   },
@@ -32,13 +33,13 @@
     "@vue/eslint-config-prettier": "^4.0.0",
     "babel-eslint": "^10.0.1",
     "concurrently": "^4.0.1",
-    "cypress": "^3.1.1",
-    "eslint": "^5.8.0",
-    "eslint-plugin-vue": "^5.0.0-0",
+    "cypress": "^3.1.3",
+    "eslint": "^5.10.0",
+    "eslint-plugin-vue": "^5.0.0",
     "json-server": "^0.14.0",
     "json-server-reset": "^1.0.0",
-    "node-sass": "^4.9.0",
+    "node-sass": "^4.11.0",
     "sass-loader": "^7.0.1",
-    "vue-template-compiler": "^2.5.17"
+    "vue-template-compiler": "^2.5.21"
   }
 }
