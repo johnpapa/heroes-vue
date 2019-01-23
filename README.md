@@ -93,3 +93,9 @@ Thank you to [Sarah Drasner](https://twitter.com/), [Brian Holt](https://twitter
 - [VS Code Extension Marketplace](https://aka.ms/jp-codeext)
 - [VS Code - macOS keys](https://aka.ms/jp-code-mackeys)
 - [VS Code - Windows keys](https://aka.ms/jp-code-winkeys)
+
+### Debugging Resources
+
+- [Debugging Angular in VS Code](https://aka.ms/debug-angular)
+- [Debugging React in VS Code](https://aka.ms/debug-react)
+- [Debugging Vue in VS Code](https://aka.ms/debug-vue)
