@@ -14,7 +14,7 @@
             readonly
             type="text"
             v-model="editingVillain.id"
-          >
+          />
         </div>
         <div class="field">
           <label class="label" for="name">name</label>
@@ -24,7 +24,7 @@
             placeholder="e.g. Colleen"
             type="text"
             v-model="editingVillain.name"
-          >
+          />
         </div>
         <div class="field">
           <label class="label" for="description">description</label>
@@ -34,7 +34,7 @@
             placeholder="dance fight!"
             type="text"
             v-model="editingVillain.description"
-          >
+          />
         </div>
       </div>
     </div>
@@ -100,5 +100,4 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
-</style>
+<style lang="scss"></style>
