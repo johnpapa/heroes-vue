@@ -1,7 +1,10 @@
-# Client App
-FROM node:10.13-alpine as client-app
-LABEL authors="John Papa"
+# Base Stage/Layer
+FROM node:10.13-alpine as base
 WORKDIR /usr/src/app
+
+# Client App
+FROM base as client-app
+LABEL authors="John Papa"
 COPY ["package.json", "npm-shrinkwrap.json*", "./"]
 RUN npm install --silent
 COPY . .
@@ -10,15 +13,13 @@ ENV VUE_APP_API $VUE_APP_API
 RUN npm run build
 
 # Node server
-FROM node:10.13-alpine as node-server
-WORKDIR /usr/src/app
+FROM base as node-server
 COPY ["package.json", "npm-shrinkwrap.json*", "./"]
 RUN npm install --production --silent && mv node_modules ../
 COPY server.js .
 
 # Final image
-FROM node:10.13-alpine
-WORKDIR /usr/src/app
+FROM base
 # get the node_modules
 COPY --from=node-server /usr/src /usr/src
 # get the client app
