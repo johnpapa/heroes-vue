@@ -6,11 +6,7 @@
     <button class="button add-button" @click="handleAdd" aria-label="add">
       <i class="fas fa-plus" aria-hidden="true"></i>
     </button>
-    <button
-      class="button refresh-button"
-      @click="handleRefresh"
-      aria-label="refresh"
-    >
+    <button class="button refresh-button" @click="handleRefresh" aria-label="refresh">
       <i class="fas fa-sync" aria-hidden="true"></i>
     </button>
   </div>
@@ -39,5 +35,3 @@ export default {
   },
 };
 </script>
-
-<style lang="scss"></style>
