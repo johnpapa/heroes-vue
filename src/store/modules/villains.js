@@ -34,41 +34,48 @@ export default {
   },
   actions: {
     // actions let us get to ({ state, getters, commit, dispatch }) {
-    getVillainsAction({ commit }) {
-      return axios
-        .get(`${API}/villains`)
-        .then(response => {
-          const villains = parseList(response);
-          commit(GET_VILLAINS, villains);
-          return villains;
-        })
-        .catch(captains.error);
+    async getVillainsAction({ commit }) {
+      try {
+        const response = await axios.get(`${API}/villains`);
+        const villains = parseList(response);
+        commit(GET_VILLAINS, villains);
+        return villains;
+      } catch (error) {
+        captains.error(error);
+      }
     },
-    deleteVillainAction({ commit }, villain) {
-      return axios
-        .delete(`${API}/villains/${villain.id}`)
-        .then(response => {
-          const villain = parseItem(response, 200);
-          commit(DELETE_VILLAIN, villain);
-          return null;
-        })
-        .catch(captains.error);
+    async deleteVillainAction({ commit }, villain) {
+      try {
+        const response = await axios.delete(`${API}/villains/${villain.id}`);
+        parseItem(response, 200);
+        commit(DELETE_VILLAIN, villain);
+        return null;
+      } catch (error) {
+        captains.error(error);
+      }
     },
-    updateVillainAction({ commit }, villain) {
-      return axios
-        .put(`${API}/villains/${villain.id}`, villain)
-        .then(response => {
-          const updatedvillain = parseItem(response, 200);
-          commit(UPDATE_VILLAIN, updatedvillain);
-          return updatedvillain;
-        });
+    async updateVillainAction({ commit }, villain) {
+      try {
+        const response = await axios.put(
+          `${API}/villains/${villain.id}`,
+          villain
+        );
+        const updatedvillain = parseItem(response, 200);
+        commit(UPDATE_VILLAIN, updatedvillain);
+        return updatedvillain;
+      } catch (error) {
+        captains.error(error);
+      }
     },
-    addVillainAction({ commit }, villain) {
-      return axios.post(`${API}/villains`, villain).then(response => {
+    async addVillainAction({ commit }, villain) {
+      try {
+        const response = await axios.post(`${API}/villains`, villain);
         const addedVillain = parseItem(response, 201);
         commit(ADD_VILLAIN, addedVillain);
         return addedVillain;
-      });
+      } catch (error) {
+        captains.error(error);
+      }
     },
   },
   getters: {

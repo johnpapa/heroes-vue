@@ -1,12 +1,8 @@
 <template>
   <ul class="list">
-    <li
-      v-for="(villain, index) in villains"
-      :key="villain.id"
-      role="presentation"
-    >
+    <li v-for="(villain, index) in villains" :key="villain.id" role="presentation">
       <div class="card">
-        <CardContent :name="villain.name" :description="villain.description" />
+        <CardContent :name="villain.name" :description="villain.description"/>
         <footer class="card-footer">
           <ButtonFooter
             class="delete-item"
@@ -62,5 +58,3 @@ export default {
   },
 };
 </script>
-
-<style lang="scss"></style>

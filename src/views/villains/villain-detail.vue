@@ -14,7 +14,7 @@
             readonly
             type="text"
             v-model="editingVillain.id"
-          />
+          >
         </div>
         <div class="field">
           <label class="label" for="name">name</label>
@@ -24,7 +24,7 @@
             placeholder="e.g. Colleen"
             type="text"
             v-model="editingVillain.name"
-          />
+          >
         </div>
         <div class="field">
           <label class="label" for="description">description</label>
@@ -34,7 +34,7 @@
             placeholder="dance fight!"
             type="text"
             v-model="editingVillain.description"
-          />
+          >
         </div>
       </div>
     </div>
@@ -61,6 +61,7 @@
 
 <script>
 import ButtonFooter from '@/components/button-footer.vue';
+import { unselector } from '../../shared';
 
 export default {
   name: 'VillainDetail',
@@ -70,6 +71,7 @@ export default {
       default() {},
     },
   },
+  mixins: [unselector],
   components: { ButtonFooter },
   data() {
     return {
@@ -89,9 +91,6 @@ export default {
     },
   },
   methods: {
-    clear() {
-      this.$emit('unselect');
-    },
     saveVillain() {
       this.$emit('save', this.editingVillain);
       this.clear();
@@ -99,5 +98,3 @@ export default {
   },
 };
 </script>
-
-<style lang="scss"></style>

@@ -1,9 +1,11 @@
 <template>
   <div id="app">
-    <HeaderBar />
+    <HeaderBar/>
     <div class="section columns">
-      <NavBar />
-      <main class="column"><router-view /></main>
+      <NavBar/>
+      <main class="column">
+        <router-view/>
+      </main>
     </div>
   </div>
 </template>
@@ -24,4 +26,6 @@ export default {
 };
 </script>
 
-<style lang="scss"></style>
+<style lang="scss">
+@import 'styles.scss';
+</style>
