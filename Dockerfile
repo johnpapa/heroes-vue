@@ -1,5 +1,5 @@
 # Base Stage/Layer
-FROM node:10.13-alpine as base
+FROM node:10.16-alpine as base
 WORKDIR /usr/src/app
 
 # Client App
