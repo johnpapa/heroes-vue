@@ -61,6 +61,7 @@
 
 <script>
 import ButtonFooter from '@/components/button-footer.vue';
+import { unselector } from '../../shared';
 
 export default {
   name: 'HeroDetail',
@@ -70,6 +71,7 @@ export default {
       default() {},
     },
   },
+  mixins: [unselector],
   components: { ButtonFooter },
   data() {
     return {
@@ -89,9 +91,6 @@ export default {
     },
   },
   methods: {
-    clear() {
-      this.$emit('unselect');
-    },
     saveHero() {
       this.$emit('save', this.editingHero);
       this.clear();

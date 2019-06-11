@@ -30,6 +30,7 @@ import ListHeader from '@/components/list-header.vue';
 import Modal from '@/components/modal.vue';
 import VillainDetail from './villain-detail.vue';
 import VillainList from './villain-list.vue';
+import { containerMethods } from '../../shared';
 
 const captains = console;
 
@@ -51,6 +52,7 @@ export default {
     VillainDetail,
     Modal,
   },
+  mixins: [containerMethods],
   created() {
     this.getVillainsAction();
   },
@@ -72,12 +74,6 @@ export default {
         captains.log(this.message);
       }
     },
-    clear() {
-      this.selected = null;
-    },
-    closeModal() {
-      this.showModal = false;
-    },
     deleteVillain() {
       this.closeModal();
       if (this.villainToDelete) {
@@ -87,9 +83,6 @@ export default {
         this.deleteVillainAction(this.villainToDelete);
       }
       this.clear();
-    },
-    enableAddMode() {
-      this.selected = {};
     },
     getVillains() {
       this.getVillainsAction();
