@@ -34,39 +34,45 @@ export default {
   },
   actions: {
     // actions let us get to ({ state, getters, commit, dispatch }) {
-    getHeroesAction({ commit }) {
-      return axios
-        .get(`${API}/heroes`)
-        .then(response => {
-          const heroes = parseList(response);
-          commit(GET_HEROES, heroes);
-          return heroes;
-        })
-        .catch(captains.error);
+    async getHeroesAction({ commit }) {
+      try {
+        const response = await axios.get(`${API}/heroes`);
+        const heroes = parseList(response);
+        commit(GET_HEROES, heroes);
+        return heroes;
+      } catch (error) {
+        captains.error(error);
+      }
     },
-    deleteHeroAction({ commit }, hero) {
-      return axios
-        .delete(`${API}/heroes/${hero.id}`)
-        .then(response => {
-          parseItem(response, 200);
-          commit(DELETE_HERO, hero);
-          return null;
-        })
-        .catch(captains.error);
+    async deleteHeroAction({ commit }, hero) {
+      try {
+        const response = await axios.delete(`${API}/heroes/${hero.id}`);
+        parseItem(response, 200);
+        commit(DELETE_HERO, hero);
+        return null;
+      } catch (error) {
+        captains.error(error);
+      }
     },
-    updateHeroAction({ commit }, hero) {
-      return axios.put(`${API}/heroes/${hero.id}`, hero).then(response => {
+    async updateHeroAction({ commit }, hero) {
+      try {
+        const response = await axios.put(`${API}/heroes/${hero.id}`, hero);
         const updatedHero = parseItem(response, 200);
         commit(UPDATE_HERO, updatedHero);
         return updatedHero;
-      });
+      } catch (error) {
+        captains.error(error);
+      }
     },
-    addHeroAction({ commit }, hero) {
-      return axios.post(`${API}/heroes`, hero).then(response => {
+    async addHeroAction({ commit }, hero) {
+      try {
+        const response = await axios.post(`${API}/heroes`, hero);
         const addedHero = parseItem(response, 201);
         commit(ADD_HERO, addedHero);
         return addedHero;
-      });
+      } catch (error) {
+        captains.error(error);
+      }
     },
   },
   getters: {
