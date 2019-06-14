@@ -18,18 +18,18 @@ export default {
   },
   mutations: {
     [ADD_HERO](state, hero) {
-      state.heroes.unshift(hero); // mutable addition
+      state.heroes.unshift(hero); // mutate the heroes array
     },
     [UPDATE_HERO](state, hero) {
       const index = state.heroes.findIndex(h => h.id === hero.id);
       state.heroes.splice(index, 1, hero);
-      state.heroes = [...state.heroes];
+      state.heroes = [...state.heroes]; // replace heroes
     },
     [GET_HEROES](state, heroes) {
-      state.heroes = heroes;
+      state.heroes = heroes; // no changes, just get
     },
     [DELETE_HERO](state, hero) {
-      state.heroes = [...state.heroes.filter(p => p.id !== hero.id)];
+      state.heroes = [...state.heroes.filter(p => p.id !== hero.id)]; // replace heroes
     },
   },
   actions: {
