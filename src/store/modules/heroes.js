@@ -34,15 +34,15 @@ export default {
   },
   actions: {
     // actions let us get to ({ state, getters, commit, dispatch }) {
-    getHeroesAction({ commit }) {
-      return axios
-        .get(`${API}/heroes`)
-        .then(response => {
-          const heroes = parseList(response);
-          commit(GET_HEROES, heroes);
-          return heroes;
-        })
-        .catch(error => captains.log(error));
+    async getHeroesAction({ commit }) {
+      try {
+        const response = await axios.get(`${API}/heroes`);
+        const heroes = parseList(response);
+        commit(GET_HEROES, heroes);
+        return heroes;
+      } catch (error) {
+        return captains.log(error);
+      }
     },
     async deleteHeroAction({ commit }, hero) {
       try {
