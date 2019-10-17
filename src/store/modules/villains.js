@@ -18,7 +18,7 @@ export default {
   },
   mutations: {
     [ADD_VILLAIN](state, villain) {
-      state.villains.unshift(villain); 
+      state.villains.unshift(villain);
     },
     [UPDATE_VILLAIN](state, villain) {
       const index = state.villains.findIndex(v => v.id === villain.id);

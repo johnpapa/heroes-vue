@@ -1,10 +1,10 @@
 <template>
   <div id="app">
-    <HeaderBar/>
+    <HeaderBar />
     <div class="section columns">
-      <NavBar/>
+      <NavBar />
       <main class="column">
-        <router-view/>
+        <router-view />
       </main>
     </div>
   </div>
