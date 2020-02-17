@@ -10,6 +10,7 @@ module.exports = {
   rules: {
     'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'off',
     'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
+    'consistent-return': process.env.NODE_ENV === 'off',
     quotes: [2, 'single', { avoidEscape: true, allowTemplateLiterals: true }],
     'prettier/prettier': [
       'error',

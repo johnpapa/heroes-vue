@@ -98,7 +98,11 @@ export default {
     },
     save(hero) {
       captains.log('hero changed', hero);
-      hero.id ? this.updateHeroAction(hero) : this.addHeroAction(hero);
+      if (hero.id) {
+        this.updateHeroAction(hero);
+      } else {
+        this.addHeroAction(hero);
+      }
     },
     select(hero) {
       this.selected = hero;
