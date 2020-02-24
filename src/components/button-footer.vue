@@ -1,18 +1,3 @@
-<template>
-  <button
-    class="link card-footer-item"
-    :class="className"
-    :aria-label="label"
-    tabindex="0"
-    @click="handleClick"
-    :data-index="dataIndex"
-    :data-id="dataId"
-  >
-    <i :class="iconClasses"></i>
-    <span>{{ label }}</span>
-  </button>
-</template>
-
 <script>
 export default {
   name: 'ButtonFooter',
@@ -49,3 +34,18 @@ export default {
   },
 };
 </script>
+
+<template>
+  <button
+    class="link card-footer-item"
+    :class="className"
+    :aria-label="label"
+    tabindex="0"
+    @click="handleClick"
+    :data-index="dataIndex"
+    :data-id="dataId"
+  >
+    <i :class="iconClasses"></i>
+    <span>{{ label }}</span>
+  </button>
+</template>

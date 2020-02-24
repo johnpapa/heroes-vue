@@ -1,3 +1,43 @@
+<script>
+import ButtonFooter from '@/components/button-footer.vue';
+import { unselector } from '../../shared';
+
+export default {
+  name: 'HeroDetail',
+  props: {
+    hero: {
+      type: Object,
+      default() {},
+    },
+  },
+  mixins: [unselector],
+  components: { ButtonFooter },
+  data() {
+    return {
+      addMode: false,
+      editingHero: { ...this.hero },
+    };
+  },
+  watch: {
+    hero() {
+      if (this.hero && this.hero.id) {
+        this.editingHero = { ...this.hero };
+        this.addMode = false;
+      } else {
+        this.editingHero = { id: undefined, name: '', description: '' };
+        this.addMode = true;
+      }
+    },
+  },
+  methods: {
+    saveHero() {
+      this.$emit('save', this.editingHero);
+      this.clear();
+    },
+  },
+};
+</script>
+
 <template>
   <div class="card edit-detail">
     <header class="card-header">
@@ -58,43 +98,3 @@
     </footer>
   </div>
 </template>
-
-<script>
-import ButtonFooter from '@/components/button-footer.vue';
-import { unselector } from '../../shared';
-
-export default {
-  name: 'HeroDetail',
-  props: {
-    hero: {
-      type: Object,
-      default() {},
-    },
-  },
-  mixins: [unselector],
-  components: { ButtonFooter },
-  data() {
-    return {
-      addMode: false,
-      editingHero: { ...this.hero },
-    };
-  },
-  watch: {
-    hero() {
-      if (this.hero && this.hero.id) {
-        this.editingHero = { ...this.hero };
-        this.addMode = false;
-      } else {
-        this.editingHero = { id: undefined, name: '', description: '' };
-        this.addMode = true;
-      }
-    },
-  },
-  methods: {
-    saveHero() {
-      this.$emit('save', this.editingHero);
-      this.clear();
-    },
-  },
-};
-</script>

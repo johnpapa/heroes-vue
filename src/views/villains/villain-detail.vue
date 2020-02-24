@@ -1,3 +1,43 @@
+<script>
+import ButtonFooter from '@/components/button-footer.vue';
+import { unselector } from '../../shared';
+
+export default {
+  name: 'VillainDetail',
+  props: {
+    villain: {
+      type: Object,
+      default() {},
+    },
+  },
+  mixins: [unselector],
+  components: { ButtonFooter },
+  data() {
+    return {
+      addMode: false,
+      editingVillain: { ...this.villain },
+    };
+  },
+  watch: {
+    villain() {
+      if (this.villain && this.villain.id) {
+        this.editingVillain = { ...this.villain };
+        this.addMode = false;
+      } else {
+        this.editingVillain = { id: undefined, name: '', description: '' };
+        this.addMode = true;
+      }
+    },
+  },
+  methods: {
+    saveVillain() {
+      this.$emit('save', this.editingVillain);
+      this.clear();
+    },
+  },
+};
+</script>
+
 <template>
   <div class="card edit-detail">
     <header class="card-header">
@@ -58,43 +98,3 @@
     </footer>
   </div>
 </template>
-
-<script>
-import ButtonFooter from '@/components/button-footer.vue';
-import { unselector } from '../../shared';
-
-export default {
-  name: 'VillainDetail',
-  props: {
-    villain: {
-      type: Object,
-      default() {},
-    },
-  },
-  mixins: [unselector],
-  components: { ButtonFooter },
-  data() {
-    return {
-      addMode: false,
-      editingVillain: { ...this.villain },
-    };
-  },
-  watch: {
-    villain() {
-      if (this.villain && this.villain.id) {
-        this.editingVillain = { ...this.villain };
-        this.addMode = false;
-      } else {
-        this.editingVillain = { id: undefined, name: '', description: '' };
-        this.addMode = true;
-      }
-    },
-  },
-  methods: {
-    saveVillain() {
-      this.$emit('save', this.editingVillain);
-      this.clear();
-    },
-  },
-};
-</script>

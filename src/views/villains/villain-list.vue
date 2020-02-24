@@ -1,3 +1,34 @@
+<script>
+import ButtonFooter from '@/components/button-footer.vue';
+import CardContent from '@/components/card-content.vue';
+
+const captains = console;
+
+export default {
+  name: 'VillainList',
+  props: {
+    villains: {
+      type: Array,
+      default: () => [],
+    },
+  },
+  components: {
+    CardContent,
+    ButtonFooter,
+  },
+  methods: {
+    deleteVillain(villain) {
+      this.$emit('deleted', villain);
+      captains.log(`You tried to delete ${villain.name}`);
+    },
+    selectVillain(villain) {
+      captains.log(`You tried to select ${villain.name}`);
+      this.$emit('selected', villain);
+    },
+  },
+};
+</script>
+
 <template>
   <ul class="list">
     <li
@@ -31,34 +62,3 @@
     </li>
   </ul>
 </template>
-
-<script>
-import ButtonFooter from '@/components/button-footer.vue';
-import CardContent from '@/components/card-content.vue';
-
-const captains = console;
-
-export default {
-  name: 'VillainList',
-  props: {
-    villains: {
-      type: Array,
-      default: () => [],
-    },
-  },
-  components: {
-    CardContent,
-    ButtonFooter,
-  },
-  methods: {
-    deleteVillain(villain) {
-      this.$emit('deleted', villain);
-      captains.log(`You tried to delete ${villain.name}`);
-    },
-    selectVillain(villain) {
-      captains.log(`You tried to select ${villain.name}`);
-      this.$emit('selected', villain);
-    },
-  },
-};
-</script>

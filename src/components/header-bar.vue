@@ -1,3 +1,13 @@
+<script>
+import HeaderBarBrand from '@/components/header-bar-brand.vue';
+import HeaderBarLinks from '@/components/header-bar-links.vue';
+
+export default {
+  name: 'HeaderBar',
+  components: { HeaderBarBrand, HeaderBarLinks },
+};
+</script>
+
 <template>
   <header>
     <nav
@@ -10,13 +20,3 @@
     </nav>
   </header>
 </template>
-
-<script>
-import HeaderBarBrand from '@/components/header-bar-brand.vue';
-import HeaderBarLinks from '@/components/header-bar-links.vue';
-
-export default {
-  name: 'HeaderBar',
-  components: { HeaderBarBrand, HeaderBarLinks },
-};
-</script>
