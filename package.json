@@ -35,7 +35,7 @@
     "cypress": "^3.8.3",
     "eslint": "^6.7.2",
     "eslint-plugin-import": "^2.20.1",
-    "eslint-plugin-prettier": "^3.1.1",
+    "eslint-plugin-prettier": "^3.1.2",
     "eslint-plugin-vue": "^6.1.2",
     "json-server": "^0.15.1",
     "json-server-reset": "^1.0.0",
