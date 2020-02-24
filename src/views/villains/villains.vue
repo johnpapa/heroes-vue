@@ -11,7 +11,6 @@
         <VillainList
           v-if="!selected"
           :villains="villains"
-          :selectedVillain="selected"
           @selected="select($event)"
           @deleted="askToDelete($event)"
         ></VillainList>

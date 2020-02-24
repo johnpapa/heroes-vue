@@ -11,7 +11,6 @@
         <HeroList
           v-if="!selected"
           :heroes="heroes"
-          :selectedHero="selected"
           @deleted="askToDelete($event)"
           @selected="select($event)"
         ></HeroList>
