@@ -80,7 +80,6 @@ export default {
       this.showModal = true;
       if (this.heroToDelete.name) {
         this.message = `Would you like to delete ${this.heroToDelete.name}?`;
-        captains.log(this.message);
       }
     },
     deleteHero() {
