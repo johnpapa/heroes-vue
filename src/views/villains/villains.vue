@@ -99,9 +99,11 @@ export default {
     },
     save(villain) {
       captains.log('villain changed', villain);
-      villain.id
-        ? this.updateVillainAction(villain)
-        : this.addVillainAction(villain);
+      if (villain.id) {
+        this.updateVillainAction(villain);
+      } else {
+        this.addVillainAction(villain);
+      }
     },
     select(villain) {
       this.selected = villain;
