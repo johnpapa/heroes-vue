@@ -2,7 +2,7 @@ const express = require('express');
 
 const app = express();
 const port = process.env.PORT || 9626;
-const www = process.env.WWW || './public';
+const www = process.env.WWW || './dist';
 
 const captains = console;
 
