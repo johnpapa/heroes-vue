@@ -3,11 +3,16 @@ name: Azure Pages CI/CD
 on:
   push:
     branches:
-    - master
+      - master
   pull_request:
     types: [opened, synchronize, reopened, closed]
     branches:
-    - master
+      - master
+
+env:
+  APP_LOCATION: ""
+  API_LOCATION: null
+  APP_ARTIFACT_LOCATION: "dist"
 
 jobs:
   build_and_deploy_job:
@@ -15,26 +20,26 @@ jobs:
     runs-on: ubuntu-latest
     name: Build and Deploy Job
     steps:
-    - uses: actions/checkout@v1
-    - name: Build And Deploy
-      id: builddeploy
-      uses: joslinmicrosoft/staticsitesactionoryx@canary3
-      with:
-        azure_pages_api_token: ${{ secrets.AZURE_PAGES_API_TOKEN_ASHY_FOREST_076F61E4 }}
-        repo_token: ${{ secrets.GITHUB_TOKEN }} # Used for Github integrations (i.e. PR comments)
-        action: 'upload'
-        app_location: '' # App Source Code Path
-        # api_location: 'api' # Api Source Code Path - optional
-        app_artifact_location: 'dist' # Built App Content Directory - optional
+      - uses: actions/checkout@v1
+      - name: Build And Deploy
+        id: builddeploy
+        uses: joslinmicrosoft/staticsitesactionoryx@canary3
+        with:
+          azure_pages_api_token: ${{ secrets.AZURE_PAGES_API_TOKEN_ASHY_FOREST_076F61E4 }}
+          repo_token: ${{ secrets.GITHUB_TOKEN }} # Used for Github integrations (i.e. PR comments)
+          action: "upload"
+          app_location: $APP_LOCATION # App Source Code Path
+          api_location: $API_LOCATION # Api Source Code Path - optional
+          app_artifact_location: $APP_ARTIFACT_LOCATION # Built App Content Directory - optional
 
   close_pull_request_job:
     if: github.event_name == 'pull_request' && github.event.action == 'closed'
     runs-on: ubuntu-latest
     name: Close Pull Request Job
     steps:
-    - name: Close Pull Request
-      id: closepullrequest
-      uses: joslinmicrosoft/staticsitesaction@canary2
-      with:
-        azure_pages_api_token: ${{ secrets.AZURE_PAGES_API_TOKEN_ASHY_FOREST_076F61E4 }}
-        action: 'close'
+      - name: Close Pull Request
+        id: closepullrequest
+        uses: joslinmicrosoft/staticsitesaction@canary2
+        with:
+          azure_pages_api_token: ${{ secrets.AZURE_PAGES_API_TOKEN_ASHY_FOREST_076F61E4 }}
+          action: "close"
