@@ -12,16 +12,16 @@ on:
 
 jobs:
   build_and_deploy_job:
-    env:
-      APP_LOCATION: ""
-      API_LOCATION: "api"
-      APP_ARTIFACT_LOCATION: "dist"
     if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.action != 'closed')
     runs-on: ubuntu-latest
     name: Build and Deploy Job
     steps:
       - uses: actions/checkout@v1
       - name: Build And Deploy
+        env:
+          APP_LOCATION: ""
+          API_LOCATION: "api"
+          APP_ARTIFACT_LOCATION: "dist"
         id: builddeploy
         uses: joslinmicrosoft/staticsitesactionoryx@canary3
         with:
