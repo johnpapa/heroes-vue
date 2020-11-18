@@ -1,22 +1,20 @@
 {
   "eslint.enable": true,
   "workbench.colorCustomizations": {
-    "activityBar.background": "#65c89b",
+    "activityBar.background": "#42b883",
+    "activityBar.activeBackground": "#42b883",
+    "activityBar.activeBorder": "#f0e8f7",
     "activityBar.foreground": "#15202b",
     "activityBar.inactiveForeground": "#15202b99",
-    "activityBarBadge.background": "#945bc4",
-    "activityBarBadge.foreground": "#e7e7e7",
+    "activityBarBadge.background": "#f0e8f7",
+    "activityBarBadge.foreground": "#15202b",
     "titleBar.activeBackground": "#42b883",
-    "titleBar.inactiveBackground": "#42b88399",
     "titleBar.activeForeground": "#15202b",
+    "titleBar.inactiveBackground": "#42b88399",
     "titleBar.inactiveForeground": "#15202b99",
     "statusBar.background": "#42b883",
-    "statusBarItem.hoverBackground": "#359268",
     "statusBar.foreground": "#15202b",
-    "panel.border": "#65c89b",
-    "sideBar.border": "#65c89b",
-    "editorGroup.border": "#65c89b",
-    "tab.activeBorder": "#65c89b"
+    "statusBarItem.hoverBackground": "#359268"
   },
   "peacock.color": "#42b883"
 }
