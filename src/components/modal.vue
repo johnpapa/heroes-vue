@@ -13,10 +13,10 @@ export default {
   },
   methods: {
     onNo() {
-      this.$emit('handleNo');
+      this.$emit('handle-no');
     },
     onYes() {
-      this.$emit('handleYes');
+      this.$emit('handle-yes');
     },
   },
 };
