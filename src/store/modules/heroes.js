@@ -21,7 +21,7 @@ export default {
       state.heroes.unshift(hero); // mutate the heroes array
     },
     [UPDATE_HERO](state, hero) {
-      const index = state.heroes.findIndex(h => h.id === hero.id);
+      const index = state.heroes.findIndex((h) => h.id === hero.id);
       state.heroes.splice(index, 1, hero);
       state.heroes = [...state.heroes]; // replace heroes
     },
@@ -29,7 +29,7 @@ export default {
       state.heroes = heroes; // no changes, just get
     },
     [DELETE_HERO](state, hero) {
-      state.heroes = [...state.heroes.filter(p => p.id !== hero.id)]; // replace heroes
+      state.heroes = [...state.heroes.filter((p) => p.id !== hero.id)]; // replace heroes
     },
   },
   actions: {
@@ -76,6 +76,6 @@ export default {
     },
   },
   getters: {
-    heroes: state => state.heroes,
+    heroes: (state) => state.heroes,
   },
 };

@@ -21,7 +21,7 @@ export default {
       state.villains.unshift(villain);
     },
     [UPDATE_VILLAIN](state, villain) {
-      const index = state.villains.findIndex(v => v.id === villain.id);
+      const index = state.villains.findIndex((v) => v.id === villain.id);
       state.villains.splice(index, 1, villain);
       state.villains = [...state.villains];
     },
@@ -29,7 +29,7 @@ export default {
       state.villains = villains;
     },
     [DELETE_VILLAIN](state, villain) {
-      state.villains = [...state.villains.filter(p => p.id !== villain.id)];
+      state.villains = [...state.villains.filter((p) => p.id !== villain.id)];
     },
   },
   actions: {
@@ -79,6 +79,6 @@ export default {
     },
   },
   getters: {
-    villains: state => state.villains,
+    villains: (state) => state.villains,
   },
 };
