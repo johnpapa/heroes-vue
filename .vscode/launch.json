@@ -8,6 +8,7 @@
       "type": "chrome",
       "request": "launch",
       "name": "Vue: Chrome",
+      "preLaunchTask": "npm: quick",
       "url": "http://localhost:9626",
       "webRoot": "${workspaceFolder}/src",
       "breakOnLoad": true,

@@ -1,39 +1,3 @@
-<template>
-  <div class="content-container">
-    <ListHeader
-      :title="title"
-      @refresh="getVillains"
-      @add="enableAddMode"
-      :routePath="routePath"
-    ></ListHeader>
-    <div class="columns is-multiline is-variable">
-      <div class="column is-8" v-if="villains">
-        <VillainList
-          v-if="!selected"
-          :villains="villains"
-          :selectedVillain="selected"
-          @selected="select($event)"
-          @deleted="askToDelete($event)"
-        ></VillainList>
-        <VillainDetail
-          v-if="selected"
-          :villain="selected"
-          @unselect="clear"
-          @save="save"
-        ></VillainDetail>
-      </div>
-    </div>
-
-    <Modal
-      class="modal-villain"
-      :message="message"
-      :isOpen="showModal"
-      @handleNo="closeModal"
-      @handleYes="deleteVillain"
-    ></Modal>
-  </div>
-</template>
-
 <script>
 import { mapActions, mapGetters } from 'vuex';
 import ListHeader from '@/components/list-header.vue';
@@ -100,9 +64,11 @@ export default {
     },
     save(villain) {
       captains.log('villain changed', villain);
-      villain.id
-        ? this.updateVillainAction(villain)
-        : this.addVillainAction(villain);
+      if (villain.id) {
+        this.updateVillainAction(villain);
+      } else {
+        this.addVillainAction(villain);
+      }
     },
     select(villain) {
       this.selected = villain;
@@ -110,3 +76,38 @@ export default {
   },
 };
 </script>
+
+<template>
+  <div class="content-container">
+    <ListHeader
+      :title="title"
+      @refresh="getVillains"
+      @add="enableAddMode"
+      :routePath="routePath"
+    ></ListHeader>
+    <div class="columns is-multiline is-variable">
+      <div class="column is-8" v-if="villains">
+        <VillainList
+          v-if="!selected"
+          :villains="villains"
+          @selected="select($event)"
+          @deleted="askToDelete($event)"
+        ></VillainList>
+        <VillainDetail
+          v-if="selected"
+          :villain="selected"
+          @unselect="clear"
+          @save="save"
+        ></VillainDetail>
+      </div>
+    </div>
+
+    <Modal
+      class="modal-villain"
+      :message="message"
+      :isOpen="showModal"
+      @handleNo="closeModal"
+      @handleYes="deleteVillain"
+    ></Modal>
+  </div>
+</template>

@@ -1,39 +1,3 @@
-<template>
-  <div class="content-container">
-    <ListHeader
-      :title="title"
-      @refresh="getHeroes"
-      @add="enableAddMode"
-      :routePath="routePath"
-    ></ListHeader>
-    <div class="columns is-multiline is-variable">
-      <div class="column is-8" v-if="heroes">
-        <HeroList
-          v-if="!selected"
-          :heroes="heroes"
-          :selectedHero="selected"
-          @deleted="askToDelete($event)"
-          @selected="select($event)"
-        ></HeroList>
-        <HeroDetail
-          v-if="selected"
-          :hero="selected"
-          @unselect="clear"
-          @save="save"
-        ></HeroDetail>
-      </div>
-    </div>
-
-    <Modal
-      class="modal-hero"
-      :message="message"
-      :isOpen="showModal"
-      @handleNo="closeModal"
-      @handleYes="deleteHero"
-    ></Modal>
-  </div>
-</template>
-
 <script>
 import { mapActions, mapGetters } from 'vuex';
 import ListHeader from '@/components/list-header.vue';
@@ -81,7 +45,6 @@ export default {
       this.showModal = true;
       if (this.heroToDelete.name) {
         this.message = `Would you like to delete ${this.heroToDelete.name}?`;
-        captains.log(this.message);
       }
     },
     deleteHero() {
@@ -98,7 +61,11 @@ export default {
     },
     save(hero) {
       captains.log('hero changed', hero);
-      hero.id ? this.updateHeroAction(hero) : this.addHeroAction(hero);
+      if (hero.id) {
+        this.updateHeroAction(hero);
+      } else {
+        this.addHeroAction(hero);
+      }
     },
     select(hero) {
       this.selected = hero;
@@ -106,3 +73,38 @@ export default {
   },
 };
 </script>
+
+<template>
+  <div class="content-container">
+    <ListHeader
+      :title="title"
+      @refresh="getHeroes"
+      @add="enableAddMode"
+      :routePath="routePath"
+    ></ListHeader>
+    <div class="columns is-multiline is-variable">
+      <div class="column is-8" v-if="heroes">
+        <HeroList
+          v-if="!selected"
+          :heroes="heroes"
+          @deleted="askToDelete($event)"
+          @selected="select($event)"
+        ></HeroList>
+        <HeroDetail
+          v-if="selected"
+          :hero="selected"
+          @unselect="clear"
+          @save="save"
+        ></HeroDetail>
+      </div>
+    </div>
+
+    <Modal
+      class="modal-hero"
+      :message="message"
+      :isOpen="showModal"
+      @handleNo="closeModal"
+      @handleYes="deleteHero"
+    ></Modal>
+  </div>
+</template>

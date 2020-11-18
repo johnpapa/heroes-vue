@@ -1,3 +1,9 @@
+<script>
+export default {
+  name: 'HeaderBarBrand',
+};
+</script>
+
 <template>
   <div class="navbar-brand">
     <a
@@ -25,9 +31,3 @@
     </button>
   </div>
 </template>
-
-<script>
-export default {
-  name: 'HeaderBarBrand',
-};
-</script>

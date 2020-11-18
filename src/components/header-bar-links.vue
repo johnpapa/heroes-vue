@@ -1,3 +1,9 @@
+<script>
+export default {
+  name: 'HeaderBarLinks',
+};
+</script>
+
 <template>
   <div class="navbar-menu">
     <div class="navbar-end">
@@ -22,9 +28,3 @@
     </div>
   </div>
 </template>
-
-<script>
-export default {
-  name: 'HeaderBarLinks',
-};
-</script>

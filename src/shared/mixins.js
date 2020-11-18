@@ -1,6 +1,6 @@
 export const unselector = {
   methods: {
-    clear: function() {
+    clear() {
       this.$emit('unselect');
     },
   },
@@ -8,10 +8,10 @@ export const unselector = {
 
 export const containerMethods = {
   methods: {
-    clear: function() {
+    clear() {
       this.selected = null;
     },
-    closeModal: function() {
+    closeModal() {
       this.showModal = false;
     },
     enableAddMode() {

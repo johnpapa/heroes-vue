@@ -22,7 +22,9 @@ export default new Router({
       path: '/villains',
       name: 'villains',
       component: () =>
-        import(/* webpackChunkName: "villains" */ './views/villains/villains.vue'),
+        import(
+          /* webpackChunkName: "villains" */ './views/villains/villains.vue'
+        ),
     },
     {
       path: '/about',
