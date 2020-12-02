@@ -1,10 +1,12 @@
 module.exports = {
   root: true,
+
   env: {
     node: true,
   },
-  extends: ['@vue/airbnb', 'plugin:vue/vue3-essential', '@vue/prettier'],
+
   plugins: ['prettier'],
+
   // watch this for explaining why some of this is here
   // https://www.youtube.com/watch?time_continue=239&v=YIvjKId9m2c
   rules: {
@@ -27,7 +29,15 @@ module.exports = {
       },
     ],
   },
+
   parserOptions: {
-    parser: 'babel-eslint',
+    parser: '@typescript-eslint/parser',
   },
+
+  extends: [
+    '@vue/airbnb',
+    'plugin:vue/vue3-essential',
+    '@vue/prettier',
+    '@vue/typescript',
+  ],
 };
