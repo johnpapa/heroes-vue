@@ -1,42 +1,66 @@
-<script>
+<script lang="ts">
+import {
+  defineComponent,
+  PropType,
+  reactive,
+  SetupContext,
+  toRefs,
+  watch,
+} from 'vue';
 import ButtonFooter from '@/components/button-footer.vue';
+import { Hero } from '@/store/modules/models';
 
-export default {
+interface Props {
+  hero: Hero;
+}
+
+interface ComponentState {
+  addMode: boolean;
+  editingHero: Hero;
+}
+
+export default defineComponent({
   name: 'HeroDetail',
   props: {
     hero: {
-      type: Object,
-      default() {},
+      type: Object as PropType<Hero>,
+      default: () => new Hero(''),
     },
   },
   components: { ButtonFooter },
-  data() {
-    return {
+  setup(props: Props, { emit }: SetupContext) {
+    const { hero } = toRefs(props);
+    const state: ComponentState = reactive({
       addMode: false,
-      editingHero: { ...this.hero },
-    };
-  },
-  watch: {
-    hero() {
-      if (this.hero && this.hero.id) {
-        this.editingHero = { ...this.hero };
-        this.addMode = false;
+      editingHero: { ...hero.value },
+    });
+
+    watch(hero, (/* newValue, oldValue */) => {
+      if (hero.value && hero.value.id) {
+        state.editingHero = { ...hero.value };
+        state.addMode = false;
       } else {
-        this.editingHero = { id: undefined, name: '', description: '' };
-        this.addMode = true;
+        state.editingHero = {
+          id: '',
+          name: '',
+          description: '',
+        };
+        state.addMode = true;
       }
-    },
+    });
+
+    function clear() {
+      emit('unselect');
+    }
+
+    function saveHero() {
+      emit('save', state.editingHero);
+      clear();
+    }
+
+    return { ...state, clear, saveHero };
   },
-  methods: {
-    clear() {
-      this.$emit('unselect');
-    },
-    saveHero() {
-      this.$emit('save', this.editingHero);
-      this.clear();
-    },
-  },
-};
+});
 </script>
 
 <template>

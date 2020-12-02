@@ -1,42 +1,66 @@
-<script>
+<script lang="ts">
+import {
+  defineComponent,
+  PropType,
+  reactive,
+  SetupContext,
+  toRefs,
+  watch,
+} from 'vue';
 import ButtonFooter from '@/components/button-footer.vue';
+import { Villain } from '@/store/modules/models';
 
-export default {
+interface Props {
+  villain: Villain;
+}
+
+interface ComponentState {
+  addMode: boolean;
+  editingVillain: Villain;
+}
+
+export default defineComponent({
   name: 'VillainDetail',
   props: {
     villain: {
-      type: Object,
-      default() {},
+      type: Object as PropType<Villain>,
+      default: () => new Villain(''),
     },
   },
   components: { ButtonFooter },
-  data() {
-    return {
+  setup(props: Props, { emit }: SetupContext) {
+    const { villain } = toRefs(props);
+    const state: ComponentState = reactive({
       addMode: false,
-      editingVillain: { ...this.villain },
-    };
-  },
-  watch: {
-    villain() {
-      if (this.villain && this.villain.id) {
-        this.editingVillain = { ...this.villain };
-        this.addMode = false;
+      editingVillain: { ...villain.value },
+    });
+
+    watch(villain, (/* newValue, oldValue */) => {
+      if (villain.value && villain.value.id) {
+        state.editingVillain = { ...villain.value };
+        state.addMode = false;
       } else {
-        this.editingVillain = { id: undefined, name: '', description: '' };
-        this.addMode = true;
+        state.editingVillain = {
+          id: '',
+          name: '',
+          description: '',
+        };
+        state.addMode = true;
       }
-    },
+    });
+
+    function clear() {
+      emit('unselect');
+    }
+
+    function saveVillain() {
+      emit('save', state.editingVillain);
+      clear();
+    }
+
+    return { ...state, clear, saveVillain };
   },
-  methods: {
-    clear() {
-      this.$emit('unselect');
-    },
-    saveVillain() {
-      this.$emit('save', this.editingVillain);
-      this.clear();
-    },
-  },
-};
+});
 </script>
 
 <template>

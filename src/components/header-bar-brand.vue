@@ -1,7 +1,9 @@
-<script>
-export default {
+<script lang="ts">
+import { defineComponent } from 'vue';
+
+export default defineComponent({
   name: 'HeaderBarBrand',
-};
+});
 </script>
 
 <template>
@@ -15,19 +17,9 @@ export default {
       <i class="fab js-logo fa-vuejs fa-2x" aria-hidden="true" />
     </a>
     <router-link to="/" class="navbar-item nav-home">
-      <span class="tour">TOUR</span>
-      <span class="of">OF</span>
-      <span class="heroes">HEROES</span>
+      <span class="brand-first">TOUR</span>
+      <span class="brand-second">OF</span>
+      <span class="brand-third">HEROES</span>
     </router-link>
-    <button
-      class="link navbar-burger burger"
-      aria-label="menu"
-      aria-expanded="false"
-      data-target="navbarBasicExample"
-    >
-      <span aria-hidden="true" />
-      <span aria-hidden="true" />
-      <span aria-hidden="true" />
-    </button>
   </div>
 </template>

@@ -1,5 +1,12 @@
-<script>
-export default {
+<script lang="ts">
+import { defineComponent, SetupContext } from 'vue';
+
+interface Props {
+  message: string;
+  isOpen: boolean;
+}
+
+export default defineComponent({
   name: 'Modal',
   props: {
     message: {
@@ -11,15 +18,21 @@ export default {
       default: () => false,
     },
   },
-  methods: {
-    onNo() {
-      this.$emit('handle-no');
-    },
-    onYes() {
-      this.$emit('handle-yes');
-    },
+  setup(props: Props, { emit }: SetupContext) {
+    function onNo() {
+      emit('handle-no');
+    }
+
+    function onYes() {
+      emit('handle-yes');
+    }
+
+    return {
+      onNo,
+      onYes,
+    };
   },
-};
+});
 </script>
 
 <template>

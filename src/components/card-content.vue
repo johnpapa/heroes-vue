@@ -1,5 +1,7 @@
-<script>
-export default {
+<script lang="ts">
+import { defineComponent } from 'vue';
+
+export default defineComponent({
   name: 'CardContent',
   props: {
     name: {
@@ -11,7 +13,7 @@ export default {
       default: () => '',
     },
   },
-};
+});
 </script>
 
 <template>

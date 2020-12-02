@@ -1,11 +1,12 @@
-<script>
+<script lang="ts">
 import HeaderBarBrand from '@/components/header-bar-brand.vue';
 import HeaderBarLinks from '@/components/header-bar-links.vue';
+import { defineComponent } from 'vue';
 
-export default {
+export default defineComponent({
   name: 'HeaderBar',
   components: { HeaderBarBrand, HeaderBarLinks },
-};
+});
 </script>
 
 <template>

@@ -1,14 +1,20 @@
-<script>
+<script lang="ts">
+import { defineComponent, SetupContext } from 'vue';
 import ButtonFooter from '@/components/button-footer.vue';
 import CardContent from '@/components/card-content.vue';
+import { Villain } from '@/store/modules/models';
 
 const captains = console;
 
-export default {
+interface Props {
+  villains: Array<Villain>;
+}
+
+export default defineComponent({
   name: 'VillainList',
   props: {
     villains: {
-      type: Array,
+      type: Array as () => Array<Villain>,
       default: () => [],
     },
   },
@@ -16,17 +22,19 @@ export default {
     CardContent,
     ButtonFooter,
   },
-  methods: {
-    deleteVillain(villain) {
-      this.$emit('deleted', villain);
+  setup(props: Props, { emit }: SetupContext) {
+    function deleteVillain(villain: Villain) {
+      emit('deleted', villain);
       captains.log(`You tried to delete ${villain.name}`);
-    },
-    selectVillain(villain) {
+    }
+    function selectVillain(villain: Villain) {
       captains.log(`You tried to select ${villain.name}`);
-      this.$emit('selected', villain);
-    },
+      emit('selected', villain);
+    }
+
+    return { deleteVillain, selectVillain };
   },
-};
+});
 </script>
 
 <template>

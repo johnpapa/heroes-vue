@@ -1,14 +1,20 @@
-<script>
+<script lang="ts">
+import { defineComponent, SetupContext } from 'vue';
 import ButtonFooter from '@/components/button-footer.vue';
 import CardContent from '@/components/card-content.vue';
+import { Hero } from '@/store/modules/models';
 
 const captains = console;
 
-export default {
+interface Props {
+  heroes: Array<Hero>;
+}
+
+export default defineComponent({
   name: 'HeroList',
   props: {
     heroes: {
-      type: Array,
+      type: Array as () => Array<Hero>,
       default: () => [],
     },
   },
@@ -16,17 +22,19 @@ export default {
     CardContent,
     ButtonFooter,
   },
-  methods: {
-    deleteHero(hero) {
-      this.$emit('deleted', hero);
+  setup(props: Props, { emit }: SetupContext) {
+    function deleteHero(hero: Hero) {
+      emit('deleted', hero);
       captains.log(`You tried to delete ${hero.name}`);
-    },
-    selectHero(hero) {
+    }
+    function selectHero(hero: Hero) {
       captains.log(`You tried to select ${hero.name}`);
-      this.$emit('selected', hero);
-    },
+      emit('selected', hero);
+    }
+
+    return { deleteHero, selectHero };
   },
-};
+});
 </script>
 <style lang="scss">
 /**

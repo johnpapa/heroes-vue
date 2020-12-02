@@ -1,84 +1,121 @@
-<script>
-import { mapActions, mapGetters } from 'vuex';
+<script lang="ts">
+import { computed, defineComponent, onMounted, reactive, toRefs } from 'vue';
+
 import ListHeader from '@/components/list-header.vue';
 import Modal from '@/components/modal.vue';
 import HeroDetail from './hero-detail.vue';
 import HeroList from './hero-list.vue';
+import { useHeroes } from './use-heroes';
+import { Hero } from '../../store/modules/models';
+import store from '../../store';
 
 const captains = console;
 
-export default {
+interface ComponentState {
+  errorMessage: string;
+  heroToDelete: Hero | null;
+  message: string;
+  routePath: string;
+  selected: Hero | null;
+  showModal: boolean;
+  title: string;
+  heroes: Hero[];
+}
+
+export default defineComponent({
   name: 'Heroes',
-  data() {
-    return {
-      heroToDelete: null,
-      message: '',
-      routePath: '/heroes',
-      selected: null,
-      showModal: false,
-      title: 'Heroes',
-    };
-  },
   components: {
     ListHeader,
     HeroList,
     HeroDetail,
     Modal,
   },
-  created() {
-    this.getHeroesAction();
-  },
-  computed: {
-    ...mapGetters('heroes', { heroes: 'heroes' }),
-  },
-  methods: {
-    ...mapActions('heroes', [
-      'getHeroesAction',
-      'deleteHeroAction',
-      'addHeroAction',
-      'updateHeroAction',
-    ]),
-    clear() {
-      this.selected = null;
-    },
-    closeModal() {
-      this.showModal = false;
-    },
-    enableAddMode() {
-      this.selected = {};
-    },
-    askToDelete(hero) {
-      this.heroToDelete = hero;
-      this.showModal = true;
-      if (this.heroToDelete.name) {
-        this.message = `Would you like to delete ${this.heroToDelete.name}?`;
+  setup() {
+    const {
+      deleteHeroAction,
+      getHeroesAction,
+      updateHeroAction,
+      addHeroAction,
+    } = useHeroes();
+
+    const state: ComponentState = reactive({
+      errorMessage: '',
+      message: '',
+      heroToDelete: null,
+      routePath: '/heroes',
+      selected: null,
+      showModal: false,
+      title: 'Heroes',
+      heroes: computed(() => store.getters.heroes as Hero[]),
+    });
+
+    onMounted(async () => getHeroes());
+
+    function clear() {
+      state.selected = null;
+    }
+
+    function closeModal() {
+      state.showModal = false;
+    }
+
+    function enableAddMode() {
+      state.selected = new Hero('');
+    }
+
+    function askToDelete(hero: Hero) {
+      state.heroToDelete = hero;
+      state.showModal = true;
+      if (state.heroToDelete.name) {
+        state.message = `Would you like to delete ${state.heroToDelete.name}?`;
       }
-    },
-    deleteHero() {
-      this.closeModal();
-      if (this.heroToDelete) {
-        captains.log(`You said you want to delete ${this.heroToDelete.name}`);
-        this.deleteHeroAction(this.heroToDelete);
+    }
+
+    async function deleteHero() {
+      closeModal();
+      if (state.heroToDelete) {
+        captains.log(`You said you want to delete ${state.heroToDelete.name}`);
+        await deleteHeroAction(state.heroToDelete);
       }
-      this.clear();
-    },
-    getHeroes() {
-      this.getHeroesAction();
-      this.clear();
-    },
-    save(hero) {
+      clear();
+    }
+
+    async function getHeroes() {
+      state.errorMessage = '';
+      try {
+        await getHeroesAction();
+      } catch (error) {
+        captains.error(error);
+        state.errorMessage = 'Unauthorized';
+      }
+    }
+
+    async function save(hero: Hero) {
       captains.log('hero changed', hero);
       if (hero.id) {
-        this.updateHeroAction(hero);
+        await updateHeroAction(hero);
       } else {
-        this.addHeroAction(hero);
+        await addHeroAction(hero);
       }
-    },
-    select(hero) {
-      this.selected = hero;
-    },
+    }
+
+    function select(hero: Hero) {
+      state.selected = hero;
+    }
+
+    return {
+      ...toRefs(state),
+      askToDelete,
+      clear,
+      closeModal,
+      deleteHero,
+      enableAddMode,
+      getHeroes,
+      save,
+      select,
+    };
   },
-};
+});
 </script>
 
 <template>
