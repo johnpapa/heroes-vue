@@ -1,14 +1,28 @@
-<script>
-import { mapActions, mapGetters } from 'vuex';
+<script lang="ts">
+import { computed, defineComponent, onMounted, reactive, toRefs } from 'vue';
+
 import ListHeader from '@/components/list-header.vue';
 import Modal from '@/components/modal.vue';
 import VillainDetail from './villain-detail.vue';
 import VillainList from './villain-list.vue';
-import { containerMethods } from '../../shared';
+import { useVillains } from './use-villains';
+import { Villain } from '../../store/modules/models';
+import store from '../../store';
 
 const captains = console;
 
-export default {
+interface ComponentState {
+  errorMessage: string;
+  villainToDelete: Villain | null;
+  message: string;
+  routePath: string;
+  selected: Villain | null;
+  showModal: boolean;
+  title: string;
+  villains: Villain[];
+}
+
+export default defineComponent({
   name: 'Villains',
   data() {
     return {
@@ -26,55 +40,94 @@ export default {
     VillainDetail,
     Modal,
   },
-  mixins: [containerMethods],
-  created() {
-    this.getVillainsAction();
-  },
-  computed: {
-    ...mapGetters('villains', { villains: 'villains' }),
-  },
-  methods: {
-    ...mapActions('villains', [
-      'getVillainsAction',
-      'deleteVillainAction',
-      'addVillainAction',
-      'updateVillainAction',
-    ]),
-    askToDelete(villain) {
-      this.villainToDelete = villain;
-      this.showModal = true;
-      if (this.villainToDelete.name) {
-        this.message = `Would you like to delete ${this.villainToDelete.name}?`;
-        captains.log(this.message);
+  setup() {
+    const {
+      deleteVillainAction,
+      getVillainsAction,
+      updateVillainAction,
+      addVillainAction,
+    } = useVillains();
+
+    const state: ComponentState = reactive({
+      errorMessage: '',
+      message: '',
+      villainToDelete: null,
+      routePath: '/villains',
+      selected: null,
+      showModal: false,
+      title: 'villains',
+      villains: computed(() => store.getters.villains as Villain[]),
+    });
+
+    onMounted(async () => getVillains());
+
+    function clear() {
+      state.selected = null;
+    }
+
+    function closeModal() {
+      state.showModal = false;
+    }
+
+    function enableAddMode() {
+      state.selected = new Villain('');
+    }
+
+    function askToDelete(villain: Villain) {
+      state.villainToDelete = villain;
+      state.showModal = true;
+      if (state.villainToDelete.name) {
+        state.message = `Would you like to delete ${state.villainToDelete.name}?`;
       }
-    },
-    deleteVillain() {
-      this.closeModal();
-      if (this.villainToDelete) {
+    }
+
+    async function deleteVillain() {
+      closeModal();
+      if (state.villainToDelete) {
         captains.log(
-          `You said you want to delete ${this.villainToDelete.name}`
+          `You said you want to delete ${state.villainToDelete.name}`
         );
-        this.deleteVillainAction(this.villainToDelete);
+        await deleteVillainAction(state.villainToDelete);
       }
-      this.clear();
-    },
-    getVillains() {
-      this.getVillainsAction();
-      this.clear();
-    },
-    save(villain) {
+      clear();
+    }
+
+    async function getVillains() {
+      state.errorMessage = '';
+      try {
+        await getVillainsAction();
+      } catch (error) {
+        captains.error(error);
+        state.errorMessage = 'Unauthorized';
+      }
+    }
+
+    async function save(villain: Villain) {
       captains.log('villain changed', villain);
       if (villain.id) {
-        this.updateVillainAction(villain);
+        await updateVillainAction(villain);
       } else {
-        this.addVillainAction(villain);
+        await addVillainAction(villain);
       }
-    },
-    select(villain) {
-      this.selected = villain;
-    },
+    }
+
+    function select(villain: Villain) {
+      state.selected = villain;
+    }
+
+    return {
+      ...toRefs(state),
+      askToDelete,
+      clear,
+      closeModal,
+      deleteVillain,
+      enableAddMode,
+      getVillains,
+      save,
+      select,
+    };
   },
-};
+});
 </script>
 
 <template>

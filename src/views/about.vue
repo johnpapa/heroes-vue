@@ -1,3 +1,11 @@
+<script lang="ts">
+import { defineComponent } from 'vue';
+
+export default defineComponent({
+  name: 'About',
+});
+</script>
+
 <template>
   <div class="content-container">
     <div class="content-title-group not-found">

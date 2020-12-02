@@ -1,17 +1,15 @@
-<script>
+<script lang="ts">
+import { defineComponent } from 'vue';
 import HeaderBar from '@/components/header-bar.vue';
 import NavBar from '@/components/nav-bar.vue';
 
-export default {
+export default defineComponent({
   name: 'App',
-  data() {
-    return {};
-  },
   components: {
     HeaderBar,
     NavBar,
   },
-};
+});
 </script>
 
 <template>

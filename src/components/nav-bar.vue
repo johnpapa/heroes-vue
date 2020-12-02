@@ -1,3 +1,11 @@
+<script lang="ts">
+import { defineComponent } from 'vue';
+
+export default defineComponent({
+  name: 'NavBar',
+});
+</script>
+
 <template>
   <nav class="column is-2 menu">
     <p class="menu-label">Menu</p>
