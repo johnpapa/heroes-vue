@@ -3,7 +3,7 @@ module.exports = {
   env: {
     node: true,
   },
-  extends: ['@vue/airbnb', 'plugin:vue/essential', '@vue/prettier'],
+  extends: ['@vue/airbnb', 'plugin:vue/vue3-essential', '@vue/prettier'],
   plugins: ['prettier'],
   // watch this for explaining why some of this is here
   // https://www.youtube.com/watch?time_continue=239&v=YIvjKId9m2c
