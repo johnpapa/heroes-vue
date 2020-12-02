@@ -4,7 +4,6 @@ import ListHeader from '@/components/list-header.vue';
 import Modal from '@/components/modal.vue';
 import HeroDetail from './hero-detail.vue';
 import HeroList from './hero-list.vue';
-import { containerMethods } from '../../shared';
 
 const captains = console;
 
@@ -26,7 +25,6 @@ export default {
     HeroDetail,
     Modal,
   },
-  mixins: [containerMethods],
   created() {
     this.getHeroesAction();
   },
@@ -40,6 +38,15 @@ export default {
       'addHeroAction',
       'updateHeroAction',
     ]),
+    clear() {
+      this.selected = null;
+    },
+    closeModal() {
+      this.showModal = false;
+    },
+    enableAddMode() {
+      this.selected = {};
+    },
     askToDelete(hero) {
       this.heroToDelete = hero;
       this.showModal = true;
