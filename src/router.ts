@@ -1,10 +1,7 @@
-import Vue from 'vue';
-import Router from 'vue-router';
+import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
 import PageNotFound from '@/components/page-not-found.vue';
 
-Vue.use(Router);
-
-const routes = [
+const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
     redirect: '/heroes',
@@ -38,8 +35,9 @@ const routes = [
   },
 ];
 
-export default new Router({
-  mode: 'history',
-  base: process.env.BASE_URL,
+const router = createRouter({
+  history: createWebHistory(process.env.BASE_URL),
   routes,
 });
+
+export default router;
