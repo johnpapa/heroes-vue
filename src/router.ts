@@ -29,10 +29,7 @@ const routes: Array<RouteRecordRaw> = [
     component: () =>
       import(/* webpackChunkName: "about" */ './views/about.vue'),
   },
-  {
-    path: '*',
-    component: PageNotFound,
-  },
+  { path: '/:pathMatch(.*)*', name: 'not-found', component: PageNotFound },
 ];
 
 const router = createRouter({
