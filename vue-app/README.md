@@ -25,7 +25,7 @@ Hosted in [Azure](https://azure.microsoft.com/free/?WT.mc_id=javascript-0000-jop
 
    ```bash
    git clone https://github.com/johnpapa/heroes-vue.git
-   cd heroes-vue
+   cd heroes-vue/vue-app
    ```
 
 1. Install the npm packages
@@ -34,10 +34,18 @@ Hosted in [Azure](https://azure.microsoft.com/free/?WT.mc_id=javascript-0000-jop
    npm install
    ```
 
-1. Run the app!
+1. Run the app
 
    ```bash
-   npm run quick
+   npm run serve
+   ```
+
+1. Open a second terminal and run the API
+
+   ```bash
+   cd ..
+   cd api
+   func start
    ```
 
 ## Cypress Tests
@@ -94,9 +102,9 @@ Cypress.io makes it easy to run all three apps simultaneously in end to end test
 
 The goal of the project was to show how each framework can be designed to create the same app. Each uses their own specific techniques in a way that is tuned to each framework. However the one caveat I wanted to achieve was to make sure all of them look the same. While I could have used specific styling for each with scoped and styled components, I chose to create a single global styles file that they all share. This allowed me to provide the same look and feel, run the same cypress tests, and focus more on the HTML and JavaScript/TypeScript.
 
-### Why JSON Server?
+### Optional JSON Server
 
-The app uses a JSON server for a backend by default. This allows you to run the code without needing any database engines or cloud accounts. Enjoy!
+The app uses an API with Azure Functions by default. But you can setup a JSON server for a backend. This allows you to run the code without needing any database engines or cloud accounts. Enjoy!
 
 ## Problems or Suggestions
 
