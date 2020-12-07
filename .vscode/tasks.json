@@ -45,6 +45,16 @@
         "cwd": "${workspaceFolder}/api"
       }
     },
+		{
+			"type": "shell",
+			"label": "npm build",
+			"command": "npm run build",
+			"dependsOn": "npm install",
+			"problemMatcher": "$tsc",
+			"options": {
+				"cwd": "${workspaceFolder}/api"
+			}
+		},
     {
       "type": "shell",
       "label": "npm install",
@@ -57,6 +67,7 @@
       "type": "shell",
       "label": "npm prune",
       "command": "npm prune --production",
+			"dependsOn": "npm build",
       "problemMatcher": [],
       "options": {
         "cwd": "${workspaceFolder}/api"
