@@ -18,5 +18,11 @@
     "statusBar.debuggingBackground": "#b84277",
     "statusBar.debuggingForeground": "#e7e7e7"
   },
-  "peacock.color": "#42b883"
+  "peacock.color": "#42b883",
+  "azureFunctions.deploySubpath": "api",
+  "azureFunctions.postDeployTask": "npm install",
+  "azureFunctions.projectLanguage": "JavaScript",
+  "azureFunctions.projectRuntime": "~3",
+  "debug.internalConsoleOptions": "neverOpen",
+  "azureFunctions.preDeployTask": "npm prune"
 }
