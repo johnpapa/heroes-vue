@@ -1,12 +1,6 @@
 {
   "routes": [
     {
-      "route": "/authenticated/*",
-      "serve": "/index.html",
-      "allowedRoles": ["authenticated"],
-      "statusCode": 200
-    },
-    {
       "route": "/*",
       "serve": "/index.html",
       "statusCode": 200
