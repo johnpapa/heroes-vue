@@ -1,8 +1,9 @@
 <script lang="ts">
-import { defineComponent, SetupContext } from 'vue';
+import { defineComponent } from 'vue';
+import type { SetupContext } from 'vue';
 import ButtonFooter from '@/components/button-footer.vue';
 import CardContent from '@/components/card-content.vue';
-import { Villain } from '@/store/modules/models';
+import type { Villain } from '../../store/modules/models';
 
 const captains = console;
 

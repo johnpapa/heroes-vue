@@ -15,14 +15,12 @@ module.exports = {
     'consistent-return': 0,
     quotes: [2, 'single', { avoidEscape: true, allowTemplateLiterals: true }],
     'max-classes-per-file': 'off',
-    'no-unused-vars': 'off',
     'no-useless-constructor': 'off',
     'no-empty-function': 'off',
     'import/prefer-default-export': 'off',
     'no-use-before-define': 'off',
     '@typescript-eslint/no-useless-constructor': 'error',
     '@typescript-eslint/no-unused-vars': ['error'],
-    'lines-between-class-members': 'off',
     'prettier/prettier': [
       'error',
       {
