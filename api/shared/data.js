@@ -81,7 +81,7 @@ const deleteHero = (id) => {
 };
 
 const getHeroes = () => {
-  return data.villains;
+  return data.heroes;
 };
 
 const addVillain = (villain) => {
