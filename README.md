@@ -21,9 +21,9 @@ Hosted in [Azure](https://azure.microsoft.com/free/?WT.mc_id=javascript-0000-jop
 
 1. Go to the folder where your preferred web framework is located, and open it's readme
 
-| Web Framework | Folder                                                              |
-| ------------- | ------------------------------------------------------------------- |
-| Vue           | [vue-app](https://github.com/johnpapa/heroes-vue/tree/main/vue-app) |
+| Web Framework | Folder                                                                             |
+| ------------- | ---------------------------------------------------------------------------------- |
+| Vue           | [vue-app](https://github.com/johnpapa/heroes-vue/tree/main/vue-app#tour-of-heroes) |
 
 ## What's in the App
 
