@@ -15,7 +15,7 @@
     "bulma": "^1.0.2",
     "core-js": "^3.37.1",
     "vue": "^3.4.31",
-    "vue-router": "^4.4.0",
+    "vue-router": "^5.0.6",
     "vuex": "^4.1.0"
   },
   "devDependencies": {
