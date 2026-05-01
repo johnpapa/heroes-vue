@@ -1,0 +1,50 @@
+name: CI
+
+on:
+  pull_request:
+    paths-ignore:
+      - '**.md'
+      - 'docs/**'
+      - '.github/ISSUE_TEMPLATE/**'
+      - 'LICENSE'
+      - '.gitignore'
+      - '.prettierrc'
+  push:
+    branches: [main]
+    paths-ignore:
+      - '**.md'
+      - 'docs/**'
+      - '.github/ISSUE_TEMPLATE/**'
+      - 'LICENSE'
+      - '.gitignore'
+      - '.prettierrc'
+
+jobs:
+  build-and-lint:
+    name: Build & Lint
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Install Vue app dependencies
+        working-directory: vue-app
+        run: npm install
+
+      - name: Lint Vue app
+        working-directory: vue-app
+        run: npm run lint
+
+      - name: Build Vue app
+        working-directory: vue-app
+        run: npm run build
+
+      - name: Install API dependencies
+        working-directory: api
+        run: npm install

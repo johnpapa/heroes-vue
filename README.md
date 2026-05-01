@@ -1,5 +1,8 @@
 # Tour of Heroes
 
+[![AI Ready](https://img.shields.io/badge/AI--Ready-yes-brightgreen?style=flat)](https://github.com/johnpapa/ai-ready)
+
+
 This project was created to help represent 4 fundamental apps, each written with Angular, React, Svelte, and Vue (respectively). The heroes and villains theme is used throughout the app.
 
 by [John Papa](http://twitter.com/john_papa)
@@ -102,3 +105,29 @@ Thank you to [Sarah Drasner](https://twitter.com/), [Brian Holt](https://twitter
 - [Debugging Angular in VS Code](https://code.visualstudio.com/docs/nodejs/angular-tutorial?WT.mc_id=javascript-0000-jopapa)
 - [Debugging React in VS Code](https://code.visualstudio.com/docs/nodejs/reactjs-tutorial?WT.mc_id=javascript-0000-jopapa)
 - [Debugging Vue in VS Code](https://code.visualstudio.com/docs/nodejs/vuejs-tutorial?WT.mc_id=javascript-0000-jopapa)
+
+## Contributing
+
+Contributions are welcome! Here's how to get started:
+
+1. Fork the repo and create a feature branch (`git checkout -b feat/my-feature`)
+2. Install dependencies in both directories:
+   ```bash
+   cd vue-app && npm install
+   cd ../api && npm install
+   ```
+3. Run the app locally: `cd vue-app && npm run quick`
+4. Make your changes and verify:
+   ```bash
+   cd vue-app
+   npm run lint
+   npm run build
+   ```
+5. Open a Pull Request against `main`
+
+> **Using Copilot?** Try a prompt like:
+> ```
+> Add a new entity called Sidekicks with full CRUD support
+> ```
+
+See [AGENTS.md](AGENTS.md) for the full contributor guide including architecture, conventions, and step-by-step instructions for adding new entities.
