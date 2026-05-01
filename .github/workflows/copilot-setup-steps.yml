@@ -1,0 +1,28 @@
+name: Copilot Setup Steps
+
+on:
+  workflow_dispatch:
+
+jobs:
+  setup:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Install Vue app dependencies
+        working-directory: vue-app
+        run: npm install
+
+      - name: Install API dependencies
+        working-directory: api
+        run: npm install
+
+      - name: Build Vue app
+        working-directory: vue-app
+        run: npm run build

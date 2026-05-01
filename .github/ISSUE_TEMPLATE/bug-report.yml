@@ -1,0 +1,70 @@
+name: Bug Report
+description: Report a bug in the Heroes Vue app
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reporting a bug! Please fill out the sections below.
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Bug Description
+      description: A clear description of what the bug is.
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to Reproduce
+      description: How can we reproduce this bug?
+      placeholder: |
+        1. Run `cd vue-app && npm run quick`
+        2. Navigate to /heroes
+        3. Click edit on a hero
+        4. ...
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected Behavior
+      description: What did you expect to happen?
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual Behavior
+      description: What actually happened?
+    validations:
+      required: true
+
+  - type: dropdown
+    id: area
+    attributes:
+      label: Affected Area
+      options:
+        - Vue App (frontend)
+        - Azure Functions API
+        - Mock Backend (json-server)
+        - Cypress Tests
+        - Build / Tooling
+    validations:
+      required: true
+
+  - type: input
+    id: browser
+    attributes:
+      label: Browser & Version
+      placeholder: "e.g., Chrome 120, Firefox 121"
+
+  - type: input
+    id: node
+    attributes:
+      label: Node.js Version
+      placeholder: "e.g., 18.19.0"
