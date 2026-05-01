@@ -1,0 +1,24 @@
+name: "Copilot Setup Steps"
+description: "Setup steps for GitHub Copilot coding agent"
+
+on: workflow_dispatch
+
+jobs:
+  copilot-setup:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "18"
+
+      - name: Install Vue app dependencies
+        working-directory: vue-app
+        run: npm install
+
+      - name: Install API dependencies
+        working-directory: api
+        run: npm install

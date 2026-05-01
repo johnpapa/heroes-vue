@@ -1,5 +1,7 @@
 # Tour of Heroes
 
+[![AI-Ready](https://img.shields.io/badge/AI--Ready-true-green?style=flat-square)](https://github.com/johnpapa/heroes-vue/blob/main/AGENTS.md)
+
 This project was created to help represent 4 fundamental apps, each written with Angular, React, Svelte, and Vue (respectively). The heroes and villains theme is used throughout the app.
 
 by [John Papa](http://twitter.com/john_papa)
